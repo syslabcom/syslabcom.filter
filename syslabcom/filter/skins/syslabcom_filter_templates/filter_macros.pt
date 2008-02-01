@@ -298,17 +298,17 @@
     <!-- TargetLanguage -->
     <div metal:define-macro="TargetLanguage">
       <div class="field" i18n:domain="syslabcom"
-            tal:define="search_langs python:here.portal_catalog.uniqueValuesFor('getTarget_language');
-            selected_lang TargetLanguage|request/getTarget_language|string:">
+            tal:define="search_langs python:here.portal_catalog.uniqueValuesFor('getTargetLanguage');
+            selected_lang getTargetLanguage|request/getTargetLanguage|string:">
            <label for="Language" i18n:domain="RiskAssessmentLink" i18n:translate="label_target_language">Target Language</label>
 
            <div class="formHelp" i18n:translate="help_search_target_language">
            Return items available in the selected language on the remote site.
            </div>
 
-           <select name="getTarget_language"
+           <select name="getTargetLanguage"
                    tabindex=""
-                   id="getTarget_language"
+                   id="getTargetLanguage"
                    tal:attributes="tabindex tabindex/next">
 
                <option value="" i18n:domain="RiskAssessmentLink" i18n:translate="label_any_language">Any language</option>
@@ -326,14 +326,14 @@
     <!-- TargetLanguage_compact -->
     <span metal:define-macro="TargetLanguage_compact">
       <span i18n:domain="syslabcom" tal:omit-tag=""
-            tal:define="search_langs python:here.portal_catalog.uniqueValuesFor('getTarget_language');
-                        selected_lang TargetLanguage|request/getTarget_language|string:"
+            tal:define="search_langs python:here.portal_catalog.uniqueValuesFor('getTargetLanguage');
+                        selected_lang getTargetLanguage|request/getTargetLanguage|string:"
             >
             <label for="Language" i18n:domain="RiskAssessmentLink" i18n:translate="label_target_language">Target Language</label>
             <br>
-            <select name="getTarget_language"
+            <select name="getTargetLanguage"
                     tabindex=""
-                    id="getTarget_language"
+                    id="getTargetLanguage"
                     tal:attributes="tabindex tabindex/next">
 
                 <option value="" i18n:domain="RiskAssessmentLink" i18n:translate="label_any_language">Any language</option>
@@ -428,11 +428,11 @@
     </div>
     <!-- end of NACE_compact -->    
 
-    <!-- Keyword aka Site Position -->
-    <div metal:define-macro="Keyword">
-      <div tal:define=" fieldName   string:category;
+    <!-- Subcategory aka Site Position -->
+    <div metal:define-macro="Subcategory">
+      <div tal:define=" fieldName   string:subcategory;
                         mockup      nocall:here/@@ATMockup;
-                        value       category|string:;
+                        value       subcategory|string:;
                         portal_type string:OSH_Link;
                         field       python:mockup.getFakeInstanceField(portal_type, fieldName);
                         widget      nocall: field/widget;
@@ -447,7 +447,38 @@
 
       </div>
     </div>
-    <!-- end of Keyword-->
+    <!-- end of Subcategory-->
+
+    <!-- ATVocabulary based dropdown -->
+    <div metal:define-macro="ATVocabularyDropdown">
+      <div tal:define=" fieldName       fieldName | string:;
+                        vocabulary      vocabulary | string:
+                        vocabulary_name vocabulary_name |string:;
+                        vocab_ob        nocall: here/portal_vocabularies/${vocabulary};
+                        root_node       root_node |string:
+                        value           value|string:;
+                        "
+            class="field">
+            <label i18n:translate="" 
+                   tal:content="vocabulary_name">Vocabulary</label><br>
+            <select tal:attributes="name fieldName;
+                                    id fieldName;
+                                    tabindex tabindex/next;"
+                    tal:define="root python:getattr(vocab_ob, root_node, vocab_ob);
+                                ">
+              <option value="" i18n:domain="RiskAssessmentLink"
+                    i18n:translate="label_select">Select...</option>                      
+              <option tal:repeat="country values"
+                      tal:attributes="value country;
+                                      selected python:test(here.checkSelected(country, value), 'selected', None);"
+                      tal:content="python:isodict.get(country, country)"
+                      i18n:translate="">Germany</option>
+            </select>
+
+
+      </div>
+    </div>
+    <!-- end of Subcategory-->
 
     <!-- Country-->
     <div metal:define-macro="Country">
@@ -488,7 +519,7 @@
             <select tal:attributes="name fieldName;
                                     id fieldName;
                                     tabindex tabindex/next;"
-                    tal:define="values python:here.portal_catalog.uniqueValuesFor('country');
+                    tal:define="values python:here.portal_catalog.uniqueValuesFor('getCountry');
                                 isodict here/portal_countryutils/getCountryIsoDict">
               <option value="" i18n:domain="RiskAssessmentLink"
                     i18n:translate="label_select">Select...</option>                      
