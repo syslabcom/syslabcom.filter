@@ -1,0 +1,9 @@
+Changelog for syslabcom.filter
+
+    (name of developer listed in brackets)
+
+syslabcom.filter - 0.1 Unreleased
+
+    - Initial package structure.
+      [zopeskel]
+

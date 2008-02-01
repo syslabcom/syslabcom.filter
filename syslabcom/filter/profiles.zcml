@@ -1,0 +1,14 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="syslabcom.filter">
+
+  <genericsetup:registerProfile
+      name="default"
+      title="Syslabcom filter tools"
+      directory="profiles/default"
+      description='Extension profile for the Plone theme to support search filters.'
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+</configure>

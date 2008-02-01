@@ -1,0 +1,532 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="plone">
+
+  <body>
+
+    <!-- SearchableText -->
+    <div metal:define-macro="SearchableText">
+      <div class="field"
+        tal:define="size size|python:25">
+                  <label for="SearchableText" i18n:translate="label_search_text">Search Text</label>
+
+                  <div class="formHelp" i18n:translate="help_search_text">
+                  For a simple text search, enter your search term
+                  here. Multiple words may be found by combining
+                  them with <strong>AND</strong> and <strong>OR</strong>.
+                  The text in this field will be matched with
+                  items' contents, title and description.
+                  </div>
+
+                  <input type="text"
+                         id="SearchableText"
+                         name="SearchableText"
+                         size="25"
+                         tal:attributes="value request/SearchableText|nothing;
+                         size size"
+                         />
+      </div>
+    </div>
+
+
+    <span metal:define-macro="SearchableText_compact">
+      <div class="field"
+           tal:define="size size|python:25;
+                       ts nocall:here/translation_service;
+                       prefill_value python:ts.translate('label_search_term', domain='plone');">
+
+                  <label for="SearchableText" i18n:translate="label_search_text">Search Text</label>
+                  <br />
+                  <input type="text"
+                         id="SearchableText"
+                         name="SearchableText"
+                         size="25"
+                         tal:attributes="value request/SearchableText | nothing;
+                                         size size;
+                                         xonfocus string:if (this.value == '${prefill_value}') this.value='';
+                                         xonblur string:if (this.value == '') this.value = '${prefill_value}';"
+                         />
+      </div>
+    </span>
+    <!-- end of SearchableText -->
+
+
+    <!-- Categories -->
+    <div metal:define-macro="Categories">
+      <div class="field">
+        <label for="Subject" i18n:translate="label_categories">Categories</label>
+
+        <div class="formHelp" i18n:translate="help_search_categories">
+        Return items matching some or all of these Categories.
+        Multiple words may be found by pressing <strong>Ctrl</strong>
+        (or <strong>Apple</strong> key on Mac) while clicking the
+        keywords.
+        </div>
+
+        <select name="Subject:list"
+                id="Subject"
+                size="7"
+                multiple="multiple"
+                tal:define="contentSubjects here/Subject;
+                            usedSubjects python:here.portal_catalog.uniqueValuesFor('Subject');"
+                >
+            <option value="#"
+                    tal:repeat="subject usedSubjects"
+                    tal:content="subject"
+                    tal:attributes="value subject"
+                    i18n:domain="plone-metadata"
+                    i18n:translate=""
+                    >dummy</option>
+        </select>
+        <br />
+
+        <input type="radio"
+               name="Subject_usage:ignore_empty"
+               id="Subject_or"
+               value=""
+               class="noborder"
+               tal:attributes="checked python:1"/>
+            <label for="Subject_or" i18n:translate="description_subject_or">
+                Match any
+            </label>
+            <br />
+
+        <input type="radio"
+                name="Subject_usage:ignore_empty"
+                id="Subject_and"
+                value="operator:and"
+                class="noborder"
+                tal:attributes="checked python:0"/>
+        <label for="Subject_and" i18n:translate="description_subject_and">
+            Match all
+        </label>
+    </div>
+    </div>
+    <!-- end of Categories -->
+
+
+    <!-- Created -->
+    <div metal:define-macro="Created">
+      <div class="field">
+          <label for="created" i18n:translate="label_new_items_since">New items since</label>
+
+          <div class="formHelp" i18n:translate="help_search_new_items_since">
+          Return items added since you were last logged on, the last week, etc.
+          </div>
+
+          <tal:datetime define="today python:DateTime().earliestTime()">
+          <select name="created:list:date"
+                  id="created"
+                  tal:define="yesterday python:(today-1).Date();
+                              lastweek python:(today-7).Date();
+                              lastmonth python:(today-31).Date();
+                              ever string:1970/02/01;">
+              <option value="#"
+                      tal:condition="not: isAnon"
+                      tal:attributes="value python:member is not None and member.getProperty('last_login_time') or today"
+                      i18n:translate="last_login">Last log-in</option>
+              <option value="#" tal:attributes="value yesterday" i18n:translate="time_yesterday"> Yesterday </option>
+              <option value="#" tal:attributes="value lastweek" i18n:translate="time_last_week"> Last week </option>
+              <option value="#" tal:attributes="value lastmonth" i18n:translate="time_last_month"> Last month </option>
+              <option value="#" tal:attributes="value ever" selected="selected" i18n:translate="time_ever"> Ever </option>
+          </select>
+          </tal:datetime>
+
+          <input type="hidden" name="created_usage" value="range:min" />
+      </div>
+
+    </div>
+    <!-- end of Created -->
+
+
+
+
+    <!-- Author -->
+    <div metal:define-macro="Author">
+      <div class="field">
+          <label for="Creator" i18n:translate="label_author">Author</label>
+
+          <div class="formHelp" i18n:translate="help_search_author">
+          Return items created by a particular person.
+          </div>
+
+          <tal:creators tal:define="creators python:portal.portal_catalog.uniqueValuesFor('Creator')">
+              <select name="Creator"
+                      id="Creator"
+                      tal:condition="python: len(creators) &lt;= 30">
+                  <option value="" i18n:translate="label_any_author">Any Author</option>
+                  <metal:block tal:repeat="creator creators">
+                      <option value="" tal:attributes="value creator" tal:content="creator"> username </option>
+                  </metal:block>
+              </select>
+
+              <input name="Creator"
+                     tal:condition="python: len(creators) &gt; 30 " />
+          </tal:creators>
+      </div>
+    </div>
+
+
+    <span metal:define-macro="Author_compact">
+          <label for="Creator" i18n:translate="label_author">Author</label>
+          <br />
+          <tal:creators tal:define="creators python:portal.portal_catalog.uniqueValuesFor('Creator');
+                                    Creator Creator|string:">
+              <select name="Creator"
+                      id="Creator"
+                      tal:condition="python: len(creators) &lt;= 30">
+                  <option value="" i18n:translate="label_any_author">Any Author</option>
+                  <metal:block tal:repeat="creator creators">
+                      <option tal:condition="creator"
+                            value="" 
+                            tal:attributes="value creator;
+                            selected python:test(Creator==creator, 'selected', '')" 
+                            tal:content="creator"> username </option>
+                  </metal:block>
+              </select>
+              <input name="Creator"
+                     tal:condition="python: len(creators) &gt; 30 " />
+          </tal:creators>
+    </span>
+    <!-- end of Author -->
+
+
+    <!-- ReviewState -->
+    <div metal:define-macro="ReviewState">
+      <div class="field">
+
+          <label for="review_state" i18n:translate="label_review_status">Review status</label>
+
+          <div class="formHelp" i18n:translate="help_search_review_status">
+          You may search for items based on their
+          review state. If you wish to constrain results to items
+          in certain states, select them from this list.
+          </div>
+
+          <span class="optionsToggle">
+          <input type="checkbox"
+                 onclick="javascript:toggleSelect(this, 'review_state:list', true);"
+                 name="rs_toggle"
+                 value="#"
+                 id="rs_toggle"
+                 class="noborder"
+                 checked="checked" />
+          <label for="rs_toggle"
+                 i18n:translate="label_toggle"
+                 >Select All/None
+          </label>
+          <br />
+          </span>
+
+          <tal:states define="
+                          navtree_props portal_properties/navtree_properties;
+                          states          python:wtool.listWFStatesByTitle(filter_similar=1);
+                          state_lists     python: here.createMultiColumnList(states, numCols=1, sort_on='self');"
+                      repeat="sublist state_lists">
+              <tal:items repeat="state sublist">
+              <input class="noborder"
+                     type="checkbox"
+                     name="review_state:list"
+                     checked="checked"
+                     tal:attributes="value python:state[1];
+                                     id python:normalizeString(state[1]);" />
+              <label for=""
+                     tal:attributes="for python:normalizeString(state[1])"
+                     i18n:translate=""
+                     tal:content="python:state[0] or state[1]"
+                     />
+              <br />
+              </tal:items>
+          </tal:states>
+      </div>
+    </div>
+
+
+    <span metal:define-macro="ReviewState_compact">
+          <label for="review_state" i18n:translate="label_review_status">Review status</label>
+          <br />
+          <tal:states define="
+                          review_state review_state|python:[];
+                          navtree_props portal_properties/navtree_properties;
+                          states          python:wtool.listWFStatesByTitle(filter_similar=1);
+                          state_lists     python: here.createMultiColumnList(states, numCols=1, sort_on='self');"
+                      repeat="sublist state_lists">
+              <select name="review_state:list"
+                multiple="multiple"
+                size="3">
+              <tal:items repeat="state sublist">
+                <option value=""
+                    tal:attributes="value python:normalizeString(state[1]);
+                    selected python:test(state[1] in review_state, 'selected', '')"
+                tal:content="python:state[0] or state[1]"></option>
+              </tal:items>
+            </select>
+          </tal:states>
+    </span>
+    <!-- end of ReviewState -->
+
+    <!-- Language -->
+    <div metal:define-macro="Language">
+      <div class="field" i18n:domain="syslabcom"
+            tal:define="search_langs here/portal_languages/getSupportedLanguages|python:[];
+            selected_lang Language|request/Language|string:"
+            xtal:condition="search_langs">
+           <label for="Language" i18n:translate="label_language">Language</label>
+
+           <div class="formHelp" i18n:translate="help_search_language">
+           Return items available in the selected language.
+           </div>
+
+           <select name="Language"
+                   tabindex=""
+                   id="Language"
+                   tal:attributes="tabindex tabindex/next">
+
+               <option value="" i18n:translate="label_any_language">Any language</option>
+               <tal:langs tal:repeat="lang search_langs">
+               <option value="#" tal:attributes="value lang;
+                       selected python:test(lang == selected_lang, 1, 0)"
+                       tal:content="python:here.portal_languages.getNameForLanguageCode(lang)"> language </option>
+               </tal:langs>
+           </select>
+
+      </div>
+    </div>
+    <!-- end of Language-->
+
+    <!-- TargetLanguage -->
+    <div metal:define-macro="TargetLanguage">
+      <div class="field" i18n:domain="syslabcom"
+            tal:define="search_langs python:here.portal_catalog.uniqueValuesFor('getTarget_language');
+            selected_lang TargetLanguage|request/getTarget_language|string:">
+           <label for="Language" i18n:domain="RiskAssessmentLink" i18n:translate="label_target_language">Target Language</label>
+
+           <div class="formHelp" i18n:translate="help_search_target_language">
+           Return items available in the selected language on the remote site.
+           </div>
+
+           <select name="getTarget_language"
+                   tabindex=""
+                   id="getTarget_language"
+                   tal:attributes="tabindex tabindex/next">
+
+               <option value="" i18n:domain="RiskAssessmentLink" i18n:translate="label_any_language">Any language</option>
+               <tal:langs tal:repeat="lang search_langs">
+               <option value="#" tal:attributes="value lang;
+                       selected python:test(lang == selected_lang, 1, 0)"
+                       tal:content="python:here.portal_languages.getNameForLanguageCode(lang)"> language </option>
+               </tal:langs>
+           </select>
+
+      </div>
+    </div>
+    <!-- end of TargetLanguage-->
+
+    <!-- TargetLanguage_compact -->
+    <span metal:define-macro="TargetLanguage_compact">
+      <span i18n:domain="syslabcom" tal:omit-tag=""
+            tal:define="search_langs python:here.portal_catalog.uniqueValuesFor('getTarget_language');
+                        selected_lang TargetLanguage|request/getTarget_language|string:"
+            >
+            <label for="Language" i18n:domain="RiskAssessmentLink" i18n:translate="label_target_language">Target Language</label>
+            <br>
+            <select name="getTarget_language"
+                    tabindex=""
+                    id="getTarget_language"
+                    tal:attributes="tabindex tabindex/next">
+
+                <option value="" i18n:domain="RiskAssessmentLink" i18n:translate="label_any_language">Any language</option>
+                <tal:langs tal:repeat="lang search_langs">
+                    <option value="#" tal:attributes="value lang;
+                            selected python:test(lang == selected_lang, 1, 0)"
+                            tal:content="python:here.portal_languages.getNameForLanguageCode(lang)"> 
+                        language 
+                    </option>
+               </tal:langs>
+           </select>
+      </span>
+    </span>
+    <!-- end of TargetLanguage_compact-->
+
+
+    <!-- ExternalUrl -->
+    <div metal:define-macro="ExternalUrl">
+        <div class="field" i18n:domain="syslabcom"
+            tal:define="size size|python:25">
+          <label for="ExternalUrl" i18n:translate="label_external_url">External URL</label>
+    
+          <div class="formHelp" i18n:translate="help_external_url">
+          Enter a URL or parts of it. The * character can be used for wildcard searches.
+          </div>
+    
+          <input type="text"
+                 id="ExternalUrl"
+                 name="ExternalUrl"
+                 size="25"
+                 tal:attributes="value request/ExternalUrl|nothing;
+                 size size"
+                 />
+        </div>
+    </div>
+
+    <span metal:define-macro="ExternalUrl_compact">
+        <span class="field" i18n:domain="syslabcom"
+            tal:define="size size|python:25">
+          <label for="ExternalUrl" i18n:translate="label_external_url">External URL</label>
+          <br />
+
+          <input type="text"
+                 id="ExternalUrl"
+                 name="ExternalUrl"
+                 size="25"
+                 tal:attributes="value request/ExternalUrl|nothing;
+                 size size"
+                 />
+        </span>
+    </span>
+    <!-- end of ExternalUrl -->
+
+    <!-- NACE -->
+    <div metal:define-macro="NACE">
+      <div tal:define=" fieldName   string:nace;
+                        mockup      nocall:here/@@ATMockup;
+                        value       string:;
+                        portal_type string:RiskAssessmentLink;
+                        field       python:mockup.getFakeInstanceField(portal_type, fieldName);
+                        widget      nocall: field/widget;
+                        mode        string:search;
+                        accessor    python:field.getDefault(here);
+                        errors      python:{};
+                        at_url      here/portal_url/getPortalPath;
+                        "
+            class="field">
+        <div metal:use-macro="here/itembrowser/macros/search"></div>
+
+      </div>
+    </div>
+    <!-- end of NACE -->
+    
+    
+    <!-- NACE_compact -->
+    <div metal:define-macro="NACE_compact">
+      <div tal:define=" fieldName   string:nace;
+                        mockup      nocall:here/@@ATMockup;
+                        value       string:;
+                        portal_type string:RiskAssessmentLink;
+                        field       python:mockup.getFakeInstanceField(portal_type, fieldName);
+                        widget      nocall: field/widget;
+                        mode        string:search;
+                        accessor    python:field.getDefault(here);
+                        errors      python:{};
+                        at_url      here/portal_url/getPortalPath;
+                        "
+            class="field">
+        <div metal:use-macro="here/itembrowser/macros/search"></div>
+
+      </div>
+    </div>
+    <!-- end of NACE_compact -->    
+
+    <!-- Keyword aka Site Position -->
+    <div metal:define-macro="Keyword">
+      <div tal:define=" fieldName   string:category;
+                        mockup      nocall:here/@@ATMockup;
+                        value       category|string:;
+                        portal_type string:OSH_Link;
+                        field       python:mockup.getFakeInstanceField(portal_type, fieldName);
+                        widget      nocall: field/widget;
+                        mode        string:search;
+                        accessor    python:field.getDefault(here);
+                        errors      python:{};
+                        at_url      here/portal_url/getPortalPath;
+                        "
+            class="field">
+
+        <div metal:use-macro="here/itembrowser/macros/search"></div>
+
+      </div>
+    </div>
+    <!-- end of Keyword-->
+
+    <!-- Country-->
+    <div metal:define-macro="Country">
+        
+      <div tal:define=" fieldName   string:country;
+                        mockup      nocall:here/@@ATMockup;
+                        value       python:[];
+                        portal_type string:RiskAssessmentLink;
+                        field       python:mockup.getFakeInstanceField(portal_type, fieldName);
+                        widget      nocall: field/widget;
+                        mode        string:search;
+                        accessor    python:field.getDefault(here);
+                        errors      python:{};
+                        at_url      here/portal_url/getPortalPath;
+                        "
+            class="field">
+        <label for="Country" i18n:domain="RiskAssessmentLink" i18n:translate="label_country">Country</label>
+        <div metal:use-macro="here/country_widgets/country/macros/search"></div>
+      </div>
+    </div>
+    <!-- end of Country -->
+
+    <!-- Country_compact_index-->
+    <span metal:define-macro="Country_compact_index">
+      <span tal:define="fieldName   string:country;
+                        mockup      nocall:here/@@ATMockup;
+                        value       python:[];
+                        portal_type string:RiskAssessmentLink;
+                        field       python:mockup.getFakeInstanceField(portal_type, fieldName);
+                        widget      nocall: field/widget;
+                        mode        string:search;
+                        accessor    python:field.getDefault(here);
+                        errors      python:{};
+                        at_url      here/portal_url/getPortalPath;
+                        "
+            class="field">
+            <label for="Country" i18n:domain="RiskAssessmentLink" i18n:translate="label_country">Country</label><br>
+            <select tal:attributes="name fieldName;
+                                    id fieldName;
+                                    tabindex tabindex/next;"
+                    tal:define="values python:here.portal_catalog.uniqueValuesFor('country');
+                                isodict here/portal_countryutils/getCountryIsoDict">
+              <option value="" i18n:domain="RiskAssessmentLink"
+                    i18n:translate="label_select">Select...</option>                      
+              <option tal:repeat="country values"
+                      tal:attributes="value country;
+                                      selected python:test(here.checkSelected(country, value), 'selected', None);"
+                      tal:content="python:isodict.get(country, country)"
+                      i18n:translate="">Germany</option>
+            </select>
+      </span>
+    </span>
+    <!-- end of Country_compact_index -->
+    
+    <!-- MultiCountry-->
+    <div metal:define-macro="MultiCountry">
+      <div tal:define=" fieldName   string:country;
+                        mockup      nocall:here/@@ATMockup;
+                        value       python:[];
+                        portal_type string:RiskAssessmentLink;
+                        field       python:mockup.getFakeInstanceField(portal_type, fieldName);
+                        widget      nocall: field/widget;
+                        mode        string:search;
+                        accessor    python:field.getDefault(here);
+                        errors      python:{};
+                        at_url      here/portal_url/getPortalPath;
+                        "
+            class="field">
+        <label for="Country" i18n:domain="RiskAssessmentLink" i18n:translate="label_country">Country</label><br>
+        <div metal:use-macro="here/country_widgets/multicountry/macros/search"></div>
+      </div>
+    </div>
+    <!-- end of MultiCountry -->
+
+
+
+
+
+
+  </body>
+
+</html>
