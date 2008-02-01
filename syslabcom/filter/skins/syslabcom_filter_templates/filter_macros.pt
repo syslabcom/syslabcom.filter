@@ -451,28 +451,25 @@
 
     <!-- ATVocabulary based dropdown -->
     <div metal:define-macro="ATVocabularyDropdown">
-      <div tal:define=" fieldName       fieldName | string:;
+      <div tal:define=" filter_helper   here/@@filter_helper;
+                        fieldName       fieldName | string:;
                         vocabulary      vocabulary | string:
-                        vocabulary_name vocabulary_name |string:;
-                        vocab_ob        nocall: here/portal_vocabularies/${vocabulary};
-                        root_node       root_node |string:
-                        value           value|string:;
+                        root_node       root_node |string:;
+                        values          python:filter_helper.getVocabularySubpath(vocabulary, root_node);
+                        value          value | string:;
                         "
             class="field">
-            <label i18n:translate="" 
-                   tal:content="vocabulary_name">Vocabulary</label><br>
             <select tal:attributes="name fieldName;
                                     id fieldName;
                                     tabindex tabindex/next;"
-                    tal:define="root python:getattr(vocab_ob, root_node, vocab_ob);
-                                ">
-              <option value="" i18n:domain="RiskAssessmentLink"
-                    i18n:translate="label_select">Select...</option>                      
-              <option tal:repeat="country values"
-                      tal:attributes="value country;
-                                      selected python:test(here.checkSelected(country, value), 'selected', None);"
-                      tal:content="python:isodict.get(country, country)"
-                      i18n:translate="">Germany</option>
+                    >
+              <option value="" i18n:domain="osha"
+                    i18n:translate="label_select">Select...</option>
+              <option tal:repeat="term values/items"
+                      tal:attributes="value python:term[0];
+                                      selected python:test(term[0]==value, 'selected', None);"
+                      tal:content="python:term[1]"
+                      i18n:translate="">Term</option>
             </select>
 
 

@@ -2,15 +2,12 @@
            xmlns:browser="http://namespaces.zope.org/browser"
            xmlns:five="http://namespaces.zope.org/five">
 
-
-    <!-- Temporary until we refactor the filter helper into its own egg -->
     <browser:page
         for="*"
         name="filter_helper"
         class=".FilterHelper.FilterHelper"
         permission="zope.Public"
         allowed_interface=".interfaces.IFilterHelper"
-        layer=".interfaces.IThemeSpecific"
         />
 
 </configure>

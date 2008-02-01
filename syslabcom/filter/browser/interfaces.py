@@ -9,3 +9,7 @@ class IFilterHelper(Interface):
     def getIndexedValues(index):
         """ returns the target languages indexed by the catalog """
 
+    def getVocabularySubpath(vocabulary, key):
+        """ returns a Display List with exactly one level of a tree Vocabulary
+            given by key
+        """
