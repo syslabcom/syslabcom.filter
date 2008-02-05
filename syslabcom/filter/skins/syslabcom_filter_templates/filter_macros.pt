@@ -550,10 +550,44 @@
     </div>
     <!-- end of MultiCountry -->
 
+    <!-- Provider_simple  -->
+    <div metal:define-macro="Provider_simple">
+      <div class="field" i18n:domain="syslabcom"
+            tal:define="providers python:here.portal_catalog(portal_type='Provider')">
+        <label for="provider" i18n:domain="RiskAssessmentLink" i18n:translate="label_provider">Provider</label>
 
+        <div class="formHelp" i18n:translate="help_search_provider">
+        Return items from the selected provider.
+        </div>
+        <select name="provider">
+            <span tal:repeat="provider providers">
+                <option tal:attributes="value provider/UID" tal:content="provider/Title"></option>
+            </span>
+        </select>
+      </div>
+    </div>
+    <!-- end of Provider_simple -->
 
-
-
+    <!-- Provider-->
+    <div metal:define-macro="Provider">
+      <div tal:define=" fieldName   string:riskassessment_provider;
+                        fieldRealName string:provider;
+                        mockup      nocall:here/@@ATMockup;
+                        value       python:[];
+                        portal_type string:RiskAssessmentLink;
+                        vocabulary  string:getProviderVocabulary;
+                        field       python:mockup.getFakeInstanceField(portal_type, fieldRealName);
+                        widget      nocall: field/widget;
+                        mode        string:search;
+                        accessor    python:field.getDefault(here);
+                        errors      python:{};
+                        at_url      here/portal_url/getPortalPath;
+                        "
+            class="field">
+        <div metal:use-macro="here/itembrowser/macros/search"></div>
+      </div>
+    </div>
+    <!-- end of Provider -->
 
   </body>
 
