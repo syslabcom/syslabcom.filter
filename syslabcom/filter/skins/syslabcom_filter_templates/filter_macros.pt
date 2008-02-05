@@ -570,11 +570,13 @@
                         value       python:[];
                         portal_type string:RiskAssessmentLink;
                         vocabulary  string:getProviderVocabulary;
+                        quicksearch_vocabulary string:getProviderQuicksearch;
                         field       python:mockup.getFakeInstanceField(portal_type, fieldRealName);
                         widget      nocall: field/widget;
                         mode        string:search;
                         accessor    python:field.getDefault(here);
                         errors      python:{};
+                        hide_id     python:True;
                         at_url      here/portal_url/getPortalPath;
                         "
             class="field">
