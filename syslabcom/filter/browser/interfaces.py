@@ -16,3 +16,7 @@ class IFilterHelper(Interface):
     def listWFStatesByWorkflowname( wfname, filter_similar=False):
         """Returns the states of the denoted workflow, optionally filtering
            out states with matching title and id"""
+
+    def getCreators():
+        """ Return list of Creators (from the catalog index), looked up in the
+        membership tool """

@@ -171,7 +171,8 @@
     <span metal:define-macro="Author_compact">
           <label for="Creator" i18n:translate="label_author">Author</label>
           <br />
-          <tal:creators tal:define="creators python:portal.portal_catalog.uniqueValuesFor('Creator');
+          <tal:creators tal:define="filter_helper   here/@@filter_helper;
+            creators filter_helper/getCreators;
                                     Creator Creator|string:">
               <select name="Creator"
                       id="Creator">

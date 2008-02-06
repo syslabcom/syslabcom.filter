@@ -5,6 +5,7 @@ from Products.CMFPlone import utils
 from Products.Five import BrowserView
 from Products.Archetypes.utils import DisplayList
 from Acquisition import aq_base
+from plone.memoize.instance import memoize
 
 
 class FilterHelper(BrowserView):
@@ -31,7 +32,7 @@ class FilterHelper(BrowserView):
         
         return dl
 
-
+    @memoize
     def listWFStatesByWorkflowname(self, wfname, filter_similar=False):
         """Returns the states of the denoted workflow, optionally filtering
            out states with matching title and id"""
@@ -53,7 +54,19 @@ class FilterHelper(BrowserView):
                             states.append(state)
                         dup_list[key] = 1
         return [(s.title, s.getId()) for s in states]
-        
+
+    @memoize
+    def getCreators(self):
+        """ See interface"""
+        pc = getToolByName(self, 'portal_catalog')
+        mtool = getToolByName(self, 'portal_membership')
+        names = pc.uniqueValuesFor('Creator')
+        nicenames = list()
+        for name in names:
+            nice = mtool.getMemberInfo(name)
+            nicenames.append(nice and nice['fullname'] or name)
+        return nicenames
+
 def _appendToDisplayList(displaylist, vdict, valueparent, mykey='', add=0):
     """ append subtree to flat display list
     """
