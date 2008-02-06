@@ -172,7 +172,7 @@
           <label for="Creator" i18n:translate="label_author">Author</label>
           <br />
           <tal:creators tal:define="filter_helper   here/@@filter_helper;
-            creators filter_helper/getCreators;
+                                    creators filter_helper/getCreators;
                                     Creator Creator|string:">
               <select name="Creator"
                       id="Creator">
@@ -181,9 +181,9 @@
                   <metal:block tal:repeat="creator creators">
                       <option tal:condition="creator"
                             value="" 
-                            tal:attributes="value creator;
-                            selected python:test(Creator==creator, 'selected', '')" 
-                            tal:content="creator"> username </option>
+                            tal:attributes="value python:creator[0];
+                            selected python:test(Creator==creator[0], 'selected', '')" 
+                            tal:content="python:creator[1]"> username </option>
                   </metal:block>
               </select>
               <!--input name="Creator"

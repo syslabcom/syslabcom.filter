@@ -64,7 +64,7 @@ class FilterHelper(BrowserView):
         nicenames = list()
         for name in names:
             nice = mtool.getMemberInfo(name)
-            nicenames.append(nice and nice['fullname'] or name)
+            nicenames.append((name, nice and nice['fullname'] or name))
         return nicenames
 
 def _appendToDisplayList(displaylist, vdict, valueparent, mykey='', add=0):
