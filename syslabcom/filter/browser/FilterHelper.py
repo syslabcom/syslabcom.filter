@@ -4,6 +4,7 @@ from zope.interface import implements
 from Products.CMFPlone import utils
 from Products.Five import BrowserView
 from Products.Archetypes.utils import DisplayList
+from Acquisition import aq_base
 
 
 class FilterHelper(BrowserView):
@@ -29,7 +30,29 @@ class FilterHelper(BrowserView):
         _appendToDisplayList(dl, vocab.getVocabularyDict(vocab), None, key)
         
         return dl
-        
+
+
+    def listWFStatesByWorkflowname(self, wfname, filter_similar=False):
+        """Returns the states of the denoted workflow, optionally filtering
+           out states with matching title and id"""
+        states = []
+        dup_list = {}
+        wtool = getToolByName(self, 'portal_workflow')
+        if not hasattr(aq_base(wtool), wfname):
+            return list()
+        else:
+            wf = getattr(wtool, wfname)
+            state_folder = getattr(wf, 'states', None)
+            if state_folder is not None:
+                if not filter_similar:
+                    states.extend(state_folder.objectValues())
+                else:
+                    for state in state_folder.objectValues():
+                        key = '%s:%s'%(state.id,state.title)
+                        if not dup_list.has_key(key):
+                            states.append(state)
+                        dup_list[key] = 1
+        return [(s.title, s.getId()) for s in states]
         
 def _appendToDisplayList(displaylist, vdict, valueparent, mykey='', add=0):
     """ append subtree to flat display list

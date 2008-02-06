@@ -246,20 +246,21 @@
     <span metal:define-macro="ReviewState_compact">
           <label for="review_state" i18n:translate="label_review_status">Review status</label>
           <br />
-          <tal:states define="
+          <tal:states define="size size | python:3;
                           review_state review_state|python:[];
+                          filter_helper   here/@@filter_helper;
+                          wfname wfname|string:plone_workflow;
                           navtree_props portal_properties/navtree_properties;
-                          states          python:wtool.listWFStatesByTitle(filter_similar=1);
-                          state_lists     python: here.createMultiColumnList(states, numCols=1, sort_on='self');"
-                      repeat="sublist state_lists">
+                          states          python:filter_helper.listWFStatesByWorkflowname(wfname, True);">
               <select name="review_state:list"
                 multiple="multiple"
-                size="3">
-              <tal:items repeat="state sublist">
+                size="3"
+                tal:attributes="size size">
+              <tal:items repeat="state states">
                 <option value=""
                     tal:attributes="value python:normalizeString(state[1]);
                     selected python:test(state[1] in review_state, 'selected', '')"
-                tal:content="python:state[0] or state[1]"></option>
+                tal:content="python:state[0] + ' (' + state[1] + ')'"></option>
               </tal:items>
             </select>
           </tal:states>
@@ -475,7 +476,7 @@
 
       </div>
     </div>
-    <!-- end of Subcategory-->
+    <!-- end of ATVocabulary based dropdown-->
 
     <!-- Country-->
     <div metal:define-macro="Country">

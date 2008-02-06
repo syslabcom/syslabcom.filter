@@ -13,3 +13,6 @@ class IFilterHelper(Interface):
         """ returns a Display List with exactly one level of a tree Vocabulary
             given by key
         """
+    def listWFStatesByWorkflowname( wfname, filter_similar=False):
+        """Returns the states of the denoted workflow, optionally filtering
+           out states with matching title and id"""
