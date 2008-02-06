@@ -174,8 +174,8 @@
           <tal:creators tal:define="creators python:portal.portal_catalog.uniqueValuesFor('Creator');
                                     Creator Creator|string:">
               <select name="Creator"
-                      id="Creator"
-                      tal:condition="python: len(creators) &lt;= 30">
+                      id="Creator">
+                    <!-- tal:condition="python: len(creators) &lt;= 30"-->
                   <option value="" i18n:translate="label_any_author">Any Author</option>
                   <metal:block tal:repeat="creator creators">
                       <option tal:condition="creator"
@@ -185,8 +185,8 @@
                             tal:content="creator"> username </option>
                   </metal:block>
               </select>
-              <input name="Creator"
-                     tal:condition="python: len(creators) &gt; 30 " />
+              <!--input name="Creator"
+                     tal:condition="python: len(creators) &gt; 30 " /-->
           </tal:creators>
     </span>
     <!-- end of Author -->
