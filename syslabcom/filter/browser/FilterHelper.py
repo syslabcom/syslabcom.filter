@@ -81,9 +81,11 @@ def _appendToDisplayList(displaylist, vdict, valueparent, mykey='', add=0):
             subdict= None
 #        if valueparent:
 #            value = '%s - %s' % (valueparent, value)
-        if add==1:
+        # if there is no mykey (e.g. because form was called without local_keyword),
+        # just return top level
+        if add==1 or not mykey:
             displaylist.add(key,value)
-        if subdict:
+        if subdict and mykey:
             if key==mykey:
                 _appendToDisplayList(displaylist, subdict, value, mykey=mykey, add=1)        
             else:
