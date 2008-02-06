@@ -328,7 +328,8 @@
     <!-- TargetLanguage_compact -->
     <span metal:define-macro="TargetLanguage_compact">
       <span i18n:domain="syslabcom" tal:omit-tag=""
-            tal:define="search_langs python:here.portal_catalog.uniqueValuesFor('getTargetLanguage');
+            tal:define="filter_helper   here/@@filter_helper;
+                        search_langs filter_helper/getTargetlanguages;
                         selected_lang getTargetLanguage|request/getTargetLanguage|string:"
             >
             <label for="Language" i18n:domain="RiskAssessmentLink" i18n:translate="label_target_language">Target Language</label>
@@ -340,9 +341,9 @@
 
                 <option value="" i18n:domain="RiskAssessmentLink" i18n:translate="label_any_language">Any language</option>
                 <tal:langs tal:repeat="lang search_langs">
-                    <option value="#" tal:attributes="value lang;
-                            selected python:test(lang == selected_lang, 1, 0)"
-                            tal:content="python:here.portal_languages.getNameForLanguageCode(lang)"> 
+                    <option value="#" tal:attributes="value python:lang[0];
+                            selected python:test(lang[0] == selected_lang, 1, 0)"
+                            tal:content="python:lang[1]"> 
                         language 
                     </option>
                </tal:langs>

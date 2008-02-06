@@ -66,6 +66,19 @@ class FilterHelper(BrowserView):
             nice = mtool.getMemberInfo(name)
             nicenames.append((name, nice and nice['fullname'] or name))
         return nicenames
+        
+    @memoize
+    def getTargetlanguages(self):
+        """ See interface """
+        pc = getToolByName(self, 'portal_catalog')
+        langtool = getToolByName(self, 'portal_languages')
+        langs = pc.uniqueValuesFor('getTargetLanguage')
+        nicelangs = list()
+        for lang in langs:
+            nice = langtool.getNameForLanguageCode(lang)
+            if nice:
+                nicelangs.append((lang, nice))
+        return nicelangs
 
 def _appendToDisplayList(displaylist, vdict, valueparent, mykey='', add=0):
     """ append subtree to flat display list
