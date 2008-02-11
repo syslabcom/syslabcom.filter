@@ -495,11 +495,43 @@
                         at_url      here/portal_url/getPortalPath;
                         "
             class="field">
-        <label for="Country" i18n:domain="RiskAssessmentLink" i18n:translate="label_country">Country</label>
         <div metal:use-macro="here/country_widgets/country/macros/search"></div>
       </div>
     </div>
     <!-- end of Country -->
+    
+    <!-- Country_compact -->
+    <div metal:define-macro="Country_compact">
+        <div tal:define="fieldName   string:country;
+                        mockup      nocall:here/@@ATMockup;
+                        value       python:[];
+                        portal_type portal_type|string:RiskAssessmentLink;
+                        field       python:mockup.getFakeInstanceField(portal_type, fieldName);
+                        widget      nocall: field/widget;
+                        vocab python:field.Vocabulary(here);
+                        format string:select;
+                        size    size|python:5;
+                        selectionview context/@@at_selection_widget;
+                        selection python:selectionview.getSelected(vocab, value);
+                        vlen python: len(vocab)">
+            <label for="country" i18n:domain="RiskAssessmentLink" i18n:translate="label_country">Country</label><br />
+            <select tal:attributes="name fieldName;
+                                    id fieldName;
+                                    tabindex tabindex/next;">
+              <option tal:condition="widget/provideNullValue" value="" tal:content="widget/nullValueTitle" i18n:translate=""/>
+              <optgroup tal:repeat="area python: here.portal_countryutils.listAreas(omit=widget.omitCountries)"
+                        tal:attributes="label area/name"
+                        i18n:attributes="label">
+                <option tal:repeat="country area/countries"
+                        tal:attributes="value country/isocc;
+                                       selected python:test(here.checkSelected(country.isocc, value), 'selected', None);"
+                        tal:content="country/name"
+                        i18n:translate="">Germany</option>
+              </optgroup>
+            </select>
+        </div>
+    </div>
+    <!-- end of Country_compact -->
 
     <!-- Country_compact_index-->
     <span metal:define-macro="Country_compact_index">
@@ -541,11 +573,45 @@
                         at_url      here/portal_url/getPortalPath;
                         "
             class="field">
-        <label for="Country" i18n:domain="RiskAssessmentLink" i18n:translate="label_country">Country</label><br>
         <div metal:use-macro="here/country_widgets/multicountry/macros/search"></div>
       </div>
     </div>
     <!-- end of MultiCountry -->
+
+
+    <!-- MultiCountry_compact-->
+    <div metal:define-macro="MultiCountry_compact">
+        <div tal:define="fieldName   string:country;
+                        mockup      nocall:here/@@ATMockup;
+                        value       python:[];
+                        portal_type portal_type|string:RiskAssessmentLink;
+                        field       python:mockup.getFakeInstanceField(portal_type, fieldName);
+                        widget      nocall: field/widget;
+                        vocab python:field.Vocabulary(here);
+                        format string:select;
+                        size    size|python:5;
+                        selectionview context/@@at_selection_widget;
+                        selection python:selectionview.getSelected(vocab, value);
+                        vlen python: len(vocab)">
+        <label for="country" i18n:domain="RiskAssessmentLink" i18n:translate="label_country">Country</label><br />
+            <select multiple size="10" 
+                    tal:attributes="name fieldName;
+                                    id fieldName;
+                                    tabindex tabindex/next;
+                                    size size;">
+              <optgroup tal:repeat="area python: here.portal_countryutils.listAreas(omit=widget.omitCountries)"
+                        tal:attributes="label area/name"
+                        i18n:attributes="label">
+                <option tal:repeat="country area/countries"
+                        tal:attributes="value country/isocc;
+                                       selected python:test(country.isocc in value, 'selected', None);"
+                        tal:content="country/name"
+                        i18n:translate="">Germany</option>
+              </optgroup>
+            </select>
+        </div>
+      </div>
+      <!-- end of MultiCountry_compact-->
 
     <!-- Provider_simple  -->
     <div metal:define-macro="Provider_simple">
