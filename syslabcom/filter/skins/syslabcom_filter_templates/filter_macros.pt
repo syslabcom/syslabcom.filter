@@ -297,20 +297,20 @@
     </div>
     <!-- end of Language-->
 
-    <!-- TargetLanguage -->
-    <div metal:define-macro="TargetLanguage">
+    <!-- RemoteLanguage -->
+    <div metal:define-macro="RemoteLanguage">
       <div class="field" i18n:domain="syslabcom"
-            tal:define="search_langs python:here.portal_catalog.uniqueValuesFor('getTargetLanguage');
-            selected_lang getTargetLanguage|request/getTargetLanguage|string:">
-           <label for="Language" i18n:domain="RiskAssessmentLink" i18n:translate="label_target_language">Target Language</label>
+            tal:define="search_langs python:here.portal_catalog.uniqueValuesFor('getRemoteLanguage');
+            selected_lang getRemoteLanguage|request/getRemoteLanguage|string:">
+           <label for="Language" i18n:domain="RiskAssessmentLink" i18n:translate="label_remote_language">Remote Language</label>
 
-           <div class="formHelp" i18n:translate="help_search_target_language">
+           <div class="formHelp" i18n:translate="help_search_remote_language">
            Return items available in the selected language on the remote site.
            </div>
 
-           <select name="getTargetLanguage"
+           <select name="getRemoteLanguage"
                    tabindex=""
-                   id="getTargetLanguage"
+                   id="getRemoteLanguage"
                    tal:attributes="tabindex tabindex/next">
 
                <option value="" i18n:domain="RiskAssessmentLink" i18n:translate="label_any_language">Any language</option>
@@ -323,20 +323,20 @@
 
       </div>
     </div>
-    <!-- end of TargetLanguage-->
+    <!-- end of RemoteLanguage-->
 
-    <!-- TargetLanguage_compact -->
-    <span metal:define-macro="TargetLanguage_compact">
+    <!-- RemoteLanguage_compact -->
+    <span metal:define-macro="RemoteLanguage_compact">
       <span i18n:domain="syslabcom" tal:omit-tag=""
             tal:define="filter_helper   here/@@filter_helper;
-                        search_langs filter_helper/getTargetlanguages;
-                        selected_lang getTargetLanguage|request/getTargetLanguage|string:"
+                        search_langs filter_helper/getRemotelanguages;
+                        selected_lang getRemoteLanguage|request/getRemoteLanguage|string:"
             >
-            <label for="Language" i18n:domain="RiskAssessmentLink" i18n:translate="label_target_language">Target Language</label>
+            <label for="getRemoteLanguage" i18n:domain="RiskAssessmentLink" i18n:translate="label_remote_language">Remote Language</label>
             <br>
-            <select name="getTargetLanguage"
+            <select name="getRemoteLanguage"
                     tabindex=""
-                    id="getTargetLanguage"
+                    id="getRemoteLanguage"
                     tal:attributes="tabindex tabindex/next">
 
                 <option value="" i18n:domain="RiskAssessmentLink" i18n:translate="label_any_language">Any language</option>
@@ -350,45 +350,45 @@
            </select>
       </span>
     </span>
-    <!-- end of TargetLanguage_compact-->
+    <!-- end of RemoteLanguage_compact-->
 
 
-    <!-- ExternalUrl -->
-    <div metal:define-macro="ExternalUrl">
+    <!-- RemoteUrl -->
+    <div metal:define-macro="RemoteUrl">
         <div class="field" i18n:domain="syslabcom"
             tal:define="size size|python:25">
-          <label for="ExternalUrl" i18n:translate="label_external_url">External URL</label>
+          <label for="getRemoteUrl" i18n:translate="label_remote_url">Remote URL</label>
     
-          <div class="formHelp" i18n:translate="help_external_url">
+          <div class="formHelp" i18n:translate="help_remote_url">
           Enter a URL or parts of it. The * character can be used for wildcard searches.
           </div>
     
           <input type="text"
-                 id="ExternalUrl"
-                 name="ExternalUrl"
+                 id="getRemoteUrl"
+                 name="getRemoteUrl"
                  size="25"
-                 tal:attributes="value request/ExternalUrl|nothing;
+                 tal:attributes="value request/getRemoteUrl|nothing;
                  size size"
                  />
         </div>
     </div>
 
-    <span metal:define-macro="ExternalUrl_compact">
+    <span metal:define-macro="RemoteUrl_compact">
         <span class="field" i18n:domain="syslabcom"
             tal:define="size size|python:25">
-          <label for="ExternalUrl" i18n:translate="label_external_url">External URL</label>
+          <label for="getRemoteUrl" i18n:translate="label_remote_url">Remote URL</label>
           <br />
 
           <input type="text"
-                 id="ExternalUrl"
-                 name="ExternalUrl"
+                 id="getRemoteUrl"
+                 name="getRemoteUrl"
                  size="25"
-                 tal:attributes="value request/ExternalUrl|nothing;
+                 tal:attributes="value request/getRemoteUrl|nothing;
                  size size"
                  />
         </span>
     </span>
-    <!-- end of ExternalUrl -->
+    <!-- end of RemmoteUrl -->
 
     <!-- NACE -->
     <div metal:define-macro="NACE">

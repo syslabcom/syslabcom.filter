@@ -12,7 +12,7 @@ class FilterHelper(BrowserView):
     implements(IFilterHelper)
 
     def getIndexedValues(self, index):
-        """ returns the target languages indexed by the catalog """
+        """ returns the remote languages indexed by the catalog """
         pc = getToolByName(self, 'portal_catalog')
         return pc.uniqueValuesFor(index)
         
@@ -68,11 +68,11 @@ class FilterHelper(BrowserView):
         return nicenames
         
     @memoize
-    def getTargetlanguages(self):
+    def getRemotelanguages(self):
         """ See interface """
         pc = getToolByName(self, 'portal_catalog')
         langtool = getToolByName(self, 'portal_languages')
-        langs = pc.uniqueValuesFor('getTargetLanguage')
+        langs = pc.uniqueValuesFor('getRemoteLanguage')
         nicelangs = list()
         for lang in langs:
             nice = langtool.getNameForLanguageCode(lang)

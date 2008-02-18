@@ -21,6 +21,6 @@ class IFilterHelper(Interface):
         """ Return list of Creators (from the catalog index), looked up in the
         membership tool """
 
-    def getTargetlanguages():
+    def getRemotelanguages():
         """ Return all target languages from the catalog that are available 
         in the portal language tool """
