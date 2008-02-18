@@ -633,8 +633,8 @@
 
     <!-- Provider-->
     <div metal:define-macro="Provider">
-      <div tal:define=" fieldName   string:riskassessment_provider;
-                        fieldRealName string:provider;
+      <div tal:define=" fieldName   string:provider;
+                        fieldRealName string:remoteProvider;
                         mockup      nocall:here/@@ATMockup;
                         value       python:[];
                         use_portal_type portal_type|string:RiskAssessmentLink;
