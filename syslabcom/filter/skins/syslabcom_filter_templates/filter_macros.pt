@@ -633,7 +633,7 @@
 
     <!-- Provider-->
     <div metal:define-macro="Provider">
-      <div tal:define=" fieldName   string:provider;
+      <div tal:define=" fieldName   string:remote_provider;
                         fieldRealName string:remoteProvider;
                         mockup      nocall:here/@@ATMockup;
                         value       python:[];
