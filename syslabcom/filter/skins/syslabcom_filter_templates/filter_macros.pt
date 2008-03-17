@@ -431,6 +431,26 @@
     </div>
     <!-- end of NACE_compact -->    
 
+    <!-- Riskfactors -->
+    <div metal:define-macro="riskfactors">
+        <div tal:define="fieldName  string:riskfactors;
+                         mockup     nocall:here/@@ATMockup;
+                         value      string:;
+                        use_portal_type portal_type|string:RiskAssessmentLink;
+                        field       python:mockup.getFakeInstanceField(use_portal_type, fieldName);
+                        widget      nocall: field/widget;
+                        mode        string:search;
+                        accessor    python:field.getDefault(here);
+                        errors      python:{};
+                        at_url      here/portal_url/getPortalPath;
+                        "
+            class="field">
+        <div metal:use-macro="here/itembrowser/macros/search"></div>
+
+      </div>
+    </div>
+    <!-- End of riskfactors -->
+    
     <!-- Subcategory aka Site Position -->
     <div metal:define-macro="Subcategory">
       <div tal:define=" fieldName   string:subcategory;
