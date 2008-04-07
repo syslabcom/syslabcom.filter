@@ -388,7 +388,27 @@
                  />
         </span>
     </span>
-    <!-- end of RemmoteUrl -->
+    <!-- end of RemoteUrl -->
+
+    <!-- MultilingualThesaurus -->
+    <div metal:define-macro="MultilingualThesaurus">
+      <div tal:define=" fieldName   string:multilingual_thesaurus;
+                        mockup      nocall:here/@@ATMockup;
+                        value       string:;
+                        use_portal_type portal_type|string:OSH_Link;
+                        field       python:mockup.getFakeInstanceField(use_portal_type, fieldName);
+                        widget      nocall: field/widget;
+                        mode        string:search;
+                        accessor    python:field.getDefault(here);
+                        errors      python:{};
+                        at_url      here/portal_url/getPortalPath;
+                        "
+            class="field">
+        <div metal:use-macro="here/itembrowser/macros/search"></div>
+
+      </div>
+    </div>
+    <!-- end of MultilingualThesaurus -->
 
     <!-- NACE -->
     <div metal:define-macro="NACE">
