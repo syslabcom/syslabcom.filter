@@ -402,6 +402,7 @@
                         accessor    python:field.getDefault(here);
                         errors      python:{};
                         at_url      here/portal_url/getPortalPath;
+                        no_help     python:True;
                         "
             class="field">
         <div metal:use-macro="here/itembrowser/macros/search"></div>
@@ -422,6 +423,7 @@
                         accessor    python:field.getDefault(here);
                         errors      python:{};
                         at_url      here/portal_url/getPortalPath;
+                        no_help     python:True;
                         "
             class="field">
         <div metal:use-macro="here/itembrowser/macros/search"></div>
@@ -483,6 +485,7 @@
                         accessor    python:field.getDefault(here);
                         errors      python:{};
                         at_url      here/portal_url/getPortalPath;
+                        no_help     python:True;
                         "
             class="field">
 
