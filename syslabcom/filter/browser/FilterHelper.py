@@ -63,8 +63,11 @@ class FilterHelper(BrowserView):
         names = pc.uniqueValuesFor('Creator')
         nicenames = list()
         for name in names:
+            if name.strip()=='':
+                continue
             nice = mtool.getMemberInfo(name)
             nicenames.append((name, nice and nice['fullname'] or name))
+        nicenames.sort(lambda x,y: cmp(x[1].lower(), y[1].lower()))
         return nicenames
         
     @memoize
