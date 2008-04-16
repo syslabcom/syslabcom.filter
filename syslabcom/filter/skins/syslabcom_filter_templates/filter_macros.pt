@@ -31,7 +31,7 @@
 
 
     <span metal:define-macro="SearchableText_compact">
-      <div class="field"
+      <span
            tal:define="size size|python:25;
                        ts nocall:here/translation_service;
                        prefill_value python:ts.translate('label_search_term', domain='plone');">
@@ -47,7 +47,7 @@
                                          xonfocus string:if (this.value == '${prefill_value}') this.value='';
                                          xonblur string:if (this.value == '') this.value = '${prefill_value}';"
                          />
-      </div>
+      </span>
     </span>
     <!-- end of SearchableText -->
 
@@ -496,8 +496,8 @@
     <!-- end of Subcategory-->
 
     <!-- ATVocabulary based dropdown -->
-    <div metal:define-macro="ATVocabularyDropdown">
-      <div tal:define=" filter_helper   here/@@filter_helper;
+    <span metal:define-macro="ATVocabularyDropdown">
+      <span tal:define=" filter_helper   here/@@filter_helper;
                         fieldName       fieldName | string:;
                         vocabulary      vocabulary | string:
                         root_node       root_node |string:;
@@ -519,8 +519,8 @@
             </select>
 
 
-      </div>
-    </div>
+      </span>
+    </span>
     <!-- end of ATVocabulary based dropdown-->
 
     <!-- Country-->
