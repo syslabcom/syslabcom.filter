@@ -528,7 +528,7 @@
         
       <div tal:define=" fieldName   string:country;
                         mockup      nocall:here/@@ATMockup;
-                        value       python:[];
+                        value       value|python:[];
                         use_portal_type portal_type|string:RiskAssessmentLink;
                         field       python:mockup.getFakeInstanceField(use_portal_type, fieldName);
                         widget      nocall: field/widget;
@@ -547,7 +547,7 @@
     <div metal:define-macro="Country_compact">
         <div tal:define="fieldName   string:country;
                         mockup      nocall:here/@@ATMockup;
-                        value       python:[];
+                        value       value|python:[];
                         use_portal_type portal_type|string:RiskAssessmentLink;
                         field       python:mockup.getFakeInstanceField(use_portal_type, fieldName);
                         widget      nocall: field/widget;
@@ -579,7 +579,7 @@
     <!-- Country_compact_index-->
     <span metal:define-macro="Country_compact_index">
       <span tal:define="fieldName   string:getCountry;
-                        value       python:[];
+                        value       value|python:[];
                         use_portal_type portal_type|string:RiskAssessmentLink;
                         mode        string:search;
                         "
