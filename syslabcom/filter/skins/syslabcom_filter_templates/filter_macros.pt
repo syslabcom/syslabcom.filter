@@ -584,7 +584,6 @@
     <span metal:define-macro="Country_compact_index">
       <span tal:define="fieldName   string:getCountry;
                         value       value|python:[];
-                        use_portal_type portal_type|string:RiskAssessmentLink;
                         mode        string:search;
                         size size|string:5;
                         multiple multiple|string:
@@ -599,12 +598,12 @@
                     tal:define="values python:here.portal_catalog.uniqueValuesFor('getCountry');
                                 isodict here/portal_countryutils/getCountryIsoDict">
               <option value="" i18n:domain="RiskAssessmentLink"
-                    i18n:translate="label_select">Select...</option>                      
+                    i18n:translate="label_select">Select...</option>    
               <option tal:repeat="country values"
                       tal:attributes="value country;
                                       selected python:test(here.checkSelected(country, getCountry), 'selected', None);"
                       tal:content="python:isodict.get(country, country)"
-                      i18n:translate="">Germany</option>
+                      i18n:translate="">country</option>
             </select>
       </span>
     </span>
@@ -614,7 +613,7 @@
     <div metal:define-macro="MultiCountry">
       <div tal:define=" fieldName   string:country;
                         mockup      nocall:here/@@ATMockup;
-                        value       python:[];
+                        value       value|python:[];
                         use_portal_type portal_type|string:RiskAssessmentLink;
                         field       python:mockup.getFakeInstanceField(use_portal_type, fieldName);
                         widget      nocall: field/widget;
@@ -634,7 +633,7 @@
     <div metal:define-macro="MultiCountry_compact">
         <div tal:define="fieldName   string:country;
                         mockup      nocall:here/@@ATMockup;
-                        value       python:[];
+                        value       value|python:[];
                         use_portal_type portal_type|string:RiskAssessmentLink;
                         field       python:mockup.getFakeInstanceField(use_portal_type, fieldName);
                         widget      nocall: field/widget;
