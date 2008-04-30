@@ -81,7 +81,7 @@
         </select>
         <br />
 
-        <input type="radio"
+        <!--input type="radio"
                name="Subject_usage:ignore_empty"
                id="Subject_or"
                value=""
@@ -100,7 +100,7 @@
                 tal:attributes="checked python:0"/>
         <label for="Subject_and" i18n:translate="description_subject_and">
             Match all
-        </label>
+        </label-->
     </div>
     </div>
     <!-- end of Categories -->
@@ -330,6 +330,8 @@
       <span i18n:domain="syslabcom" tal:omit-tag=""
             tal:define="filter_helper   here/@@filter_helper;
                         search_langs filter_helper/getRemotelanguages;
+                        multiple multiple|string:;
+                        size size|string:5;
                         selected_lang getRemoteLanguage|request/getRemoteLanguage|string:"
             >
             <label for="getRemoteLanguage" i18n:domain="RiskAssessmentLink" i18n:translate="label_remote_language">Remote Language</label>
@@ -337,7 +339,9 @@
             <select name="getRemoteLanguage"
                     tabindex=""
                     id="getRemoteLanguage"
-                    tal:attributes="tabindex tabindex/next">
+                    tal:attributes="multiple multiple; 
+                        size size;
+                        tabindex tabindex/next">
 
                 <option value="" i18n:domain="RiskAssessmentLink" i18n:translate="label_any_language">Any language</option>
                 <tal:langs tal:repeat="lang search_langs">
@@ -582,11 +586,15 @@
                         value       value|python:[];
                         use_portal_type portal_type|string:RiskAssessmentLink;
                         mode        string:search;
+                        size size|string:5;
+                        multiple multiple|string:
                         "
             class="field">
             <label for="Country" i18n:domain="RiskAssessmentLink" i18n:translate="label_country">Country</label><br>
             <select tal:attributes="name fieldName;
                                     id fieldName;
+                                    size size;
+                                    multiple multiple;
                                     tabindex tabindex/next;"
                     tal:define="values python:here.portal_catalog.uniqueValuesFor('getCountry');
                                 isodict here/portal_countryutils/getCountryIsoDict">
