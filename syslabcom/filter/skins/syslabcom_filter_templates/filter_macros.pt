@@ -54,15 +54,16 @@
 
     <!-- Categories -->
     <div metal:define-macro="Categories">
-      <div class="field">
+      <div class="field"
+        tal:define="value   value|python:[]">
         <label for="Subject" i18n:translate="label_categories">Categories</label>
 
-        <div class="formHelp" i18n:translate="help_search_categories">
+        <!--div class="formHelp" i18n:translate="help_search_categories">
         Return items matching some or all of these Categories.
         Multiple words may be found by pressing <strong>Ctrl</strong>
         (or <strong>Apple</strong> key on Mac) while clicking the
         keywords.
-        </div>
+        </div-->
 
         <select name="Subject:list"
                 id="Subject"
@@ -74,7 +75,8 @@
             <option value="#"
                     tal:repeat="subject usedSubjects"
                     tal:content="subject"
-                    tal:attributes="value subject"
+                    tal:attributes="value subject;
+                        selected python:test(subject in value, 'selected', '');"
                     i18n:domain="plone-metadata"
                     i18n:translate=""
                     >dummy</option>
