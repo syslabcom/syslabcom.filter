@@ -706,6 +706,24 @@
     </div>
     <!-- end of Provider -->
 
+
+    <!-- Riskassesment 'hazards' special -->
+    <div metal:define-macro="RAHazards">
+        <div tal:define="filter_helper   here/@@filter_helper;
+                         value value|python:[];
+                         vocabname vocabname|string:MultilingualThesaurus;
+                         termid termid|string:28521A;
+                         fieldname fieldname|string:multilingual_thesaurus;
+                         DL python:filter_helper.getVocabularySubpath(vocabname, termid);
+                         ">
+            <span tal:repeat="term DL/items">
+                <input type="checkbox" name="#" tal:attributes="name string:${fieldname}:list;
+                    value python:term[0]; checked python:test(term[0] in value, 'checked', '')"> <span tal:replace="python:term[1]"/><br />
+            </span>
+        </div>
+    </div>
+    <!-- end of Riskassesment 'hazards' special -->
+
   </body>
 
 </html>
