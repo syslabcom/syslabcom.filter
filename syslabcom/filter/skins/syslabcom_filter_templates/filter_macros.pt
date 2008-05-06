@@ -304,7 +304,7 @@
       <div class="field" i18n:domain="syslabcom"
             tal:define="search_langs python:here.portal_catalog.uniqueValuesFor('getRemoteLanguage');
             selected_lang getRemoteLanguage|request/getRemoteLanguage|string:">
-           <label for="Language" i18n:domain="RiskAssessmentLink" i18n:translate="label_remote_language">Remote Language</label>
+           <label for="Language" i18n:domain="RALink" i18n:translate="label_remote_language">Remote Language</label>
 
            <div class="formHelp" i18n:translate="help_search_remote_language">
            Return items available in the selected language on the remote site.
@@ -315,7 +315,7 @@
                    id="getRemoteLanguage"
                    tal:attributes="tabindex tabindex/next">
 
-               <option value="" i18n:domain="RiskAssessmentLink" i18n:translate="label_any_language">Any language</option>
+               <option value="" i18n:domain="RALink" i18n:translate="label_any_language">Any language</option>
                <tal:langs tal:repeat="lang search_langs">
                <option value="#" tal:attributes="value lang;
                        selected python:test(lang == selected_lang, 1, 0)"
@@ -336,7 +336,7 @@
                         size size|string:5;
                         selected_lang getRemoteLanguage|request/getRemoteLanguage|string:"
             >
-            <label for="getRemoteLanguage" i18n:domain="RiskAssessmentLink" i18n:translate="label_remote_language">Remote Language</label>
+            <label for="getRemoteLanguage" i18n:domain="RALink" i18n:translate="label_remote_language">Remote Language</label>
             <br>
             <select name="getRemoteLanguage"
                     tabindex=""
@@ -345,7 +345,7 @@
                         size size;
                         tabindex tabindex/next">
 
-                <option value="" i18n:domain="RiskAssessmentLink" i18n:translate="label_any_language">Any language</option>
+                <option value="" i18n:domain="RALink" i18n:translate="label_any_language">Any language</option>
                 <tal:langs tal:repeat="lang search_langs">
                     <option value="#" tal:attributes="value python:lang[0];
                             selected python:test(lang[0] == selected_lang, 1, 0)"
@@ -422,7 +422,7 @@
       <div tal:define=" fieldName   string:nace;
                         mockup      nocall:here/@@ATMockup;
                         value       string:;
-                        use_portal_type portal_type|string:RiskAssessmentLink;
+                        use_portal_type portal_type|string:RALink;
                         field       python:mockup.getFakeInstanceField(use_portal_type, fieldName);
                         widget      nocall: field/widget;
                         mode        string:search;
@@ -444,7 +444,7 @@
       <div tal:define=" fieldName   string:nace;
                         mockup      nocall:here/@@ATMockup;
                         value       string:;
-                        use_portal_type portal_type|string:RiskAssessmentLink;
+                        use_portal_type portal_type|string:RALink;
                         field       python:mockup.getFakeInstanceField(use_portal_type, fieldName);
                         widget      nocall: field/widget;
                         mode        string:search;
@@ -464,7 +464,7 @@
         <div tal:define="fieldName  string:riskfactors;
                          mockup     nocall:here/@@ATMockup;
                          value      string:;
-                        use_portal_type portal_type|string:RiskAssessmentLink;
+                        use_portal_type portal_type|string:RALink;
                         field       python:mockup.getFakeInstanceField(use_portal_type, fieldName);
                         widget      nocall: field/widget;
                         mode        string:search;
@@ -535,7 +535,7 @@
       <div tal:define=" fieldName   string:country;
                         mockup      nocall:here/@@ATMockup;
                         value       value|python:[];
-                        use_portal_type portal_type|string:RiskAssessmentLink;
+                        use_portal_type portal_type|string:RALink;
                         field       python:mockup.getFakeInstanceField(use_portal_type, fieldName);
                         widget      nocall: field/widget;
                         mode        string:search;
@@ -554,7 +554,7 @@
         <div tal:define="fieldName   string:country;
                         mockup      nocall:here/@@ATMockup;
                         value       value|python:[];
-                        use_portal_type portal_type|string:RiskAssessmentLink;
+                        use_portal_type portal_type|string:RALink;
                         field       python:mockup.getFakeInstanceField(use_portal_type, fieldName);
                         widget      nocall: field/widget;
                         vocab python:field.Vocabulary(here);
@@ -563,7 +563,7 @@
                         selectionview context/@@at_selection_widget;
                         selection python:selectionview.getSelected(vocab, value);
                         vlen python: len(vocab)">
-            <label for="country" i18n:domain="RiskAssessmentLink" i18n:translate="label_country">Country</label><br />
+            <label for="country" i18n:domain="RALink" i18n:translate="label_country">Country</label><br />
             <select tal:attributes="name fieldName;
                                     id fieldName;
                                     tabindex tabindex/next;">
@@ -591,7 +591,7 @@
                         multiple multiple|string:
                         "
             class="field">
-            <label for="Country" i18n:domain="RiskAssessmentLink" i18n:translate="label_country">Country</label><br>
+            <label for="Country" i18n:domain="RALink" i18n:translate="label_country">Country</label><br>
             <select tal:attributes="name fieldName;
                                     id fieldName;
                                     size size;
@@ -599,7 +599,7 @@
                                     tabindex tabindex/next;"
                     tal:define="values python:here.portal_catalog.uniqueValuesFor('getCountry');
                                 isodict here/portal_countryutils/getCountryIsoDict">
-              <option value="" i18n:domain="RiskAssessmentLink"
+              <option value="" i18n:domain="RALink"
                     i18n:translate="label_select">Select...</option>    
               <option tal:repeat="country values"
                       tal:attributes="value country;
@@ -616,7 +616,7 @@
       <div tal:define=" fieldName   string:country;
                         mockup      nocall:here/@@ATMockup;
                         value       value|python:[];
-                        use_portal_type portal_type|string:RiskAssessmentLink;
+                        use_portal_type portal_type|string:RALink;
                         field       python:mockup.getFakeInstanceField(use_portal_type, fieldName);
                         widget      nocall: field/widget;
                         mode        string:search;
@@ -636,7 +636,7 @@
         <div tal:define="fieldName   string:country;
                         mockup      nocall:here/@@ATMockup;
                         value       value|python:[];
-                        use_portal_type portal_type|string:RiskAssessmentLink;
+                        use_portal_type portal_type|string:RALink;
                         field       python:mockup.getFakeInstanceField(use_portal_type, fieldName);
                         widget      nocall: field/widget;
                         vocab python:field.Vocabulary(here);
@@ -645,7 +645,7 @@
                         selectionview context/@@at_selection_widget;
                         selection python:selectionview.getSelected(vocab, value);
                         vlen python: len(vocab)">
-        <label for="country" i18n:domain="RiskAssessmentLink" i18n:translate="label_country">Country</label><br />
+        <label for="country" i18n:domain="RALink" i18n:translate="label_country">Country</label><br />
             <select multiple size="10" 
                     tal:attributes="name fieldName;
                                     id fieldName;
@@ -669,7 +669,7 @@
     <div metal:define-macro="Provider_simple">
       <div class="field" i18n:domain="syslabcom"
             tal:define="providers python:here.portal_catalog(portal_type='Provider')">
-        <label for="provider" i18n:domain="RiskAssessmentLink" i18n:translate="label_provider">Provider</label>
+        <label for="provider" i18n:domain="RALink" i18n:translate="label_provider">Provider</label>
 
         <div class="formHelp" i18n:translate="help_search_provider">
         Return items from the selected provider.
@@ -689,7 +689,7 @@
                         fieldRealName string:remoteProvider;
                         mockup      nocall:here/@@ATMockup;
                         value       python:[];
-                        use_portal_type portal_type|string:RiskAssessmentLink;
+                        use_portal_type portal_type|string:RALink;
                         vocabulary  string:getProviderVocabulary;
                         quicksearch_vocabulary string:getProviderQuicksearch;
                         field       python:mockup.getFakeInstanceField(use_portal_type, fieldRealName);
@@ -716,6 +716,7 @@
                          fieldname fieldname|string:multilingual_thesaurus;
                          DL python:filter_helper.getVocabularySubpath(vocabname, termid);
                          ">
+            <label i18n:translate="ra_hazard">Hazard</label><br/>
             <span tal:repeat="term DL/items">
                 <input type="checkbox" name="#" tal:attributes="name string:${fieldname}:list;
                     value python:term[0]; checked python:test(term[0] in value, 'checked', '')"> <span tal:replace="python:term[1]"/><br />
