@@ -437,6 +437,28 @@
       </div>
     </div>
     <!-- end of NACE -->
+
+
+    <!-- Occupation (ISCO) -->
+    <div metal:define-macro="occupation">
+      <div tal:define=" fieldName   string:occupation;
+                        mockup      nocall:here/@@ATMockup;
+                        value       string:;
+                        use_portal_type portal_type|string:RALink;
+                        field       python:mockup.getFakeInstanceField(use_portal_type, fieldName);
+                        widget      nocall: field/widget;
+                        mode        string:search;
+                        accessor    python:field.getDefault(here);
+                        errors      python:{};
+                        at_url      here/portal_url/getPortalPath;
+                        no_help     python:True;
+                        "
+            class="field">
+        <div metal:use-macro="here/itembrowser/macros/search"></div>
+
+      </div>
+    </div>
+    <!-- end of Occupation (ISCO) -->
     
     
     <!-- NACE_compact -->
