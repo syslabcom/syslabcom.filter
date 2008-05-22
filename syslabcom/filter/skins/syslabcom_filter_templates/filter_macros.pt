@@ -107,29 +107,6 @@
     </div>
     <!-- end of Categories -->
 
-    <!-- ERO_Target_Group -->
-    <div metal:define-macro="ero_target_group"
-        i18n:domain="osha">
-      <div class="field"
-        tal:define="value value|python:[]">
-        <label for="ero_target_group" i18n:translate="label_ero_target_group">Target Group</label>
-
-        <select name="ero_target_group"
-                id="ero_target_group"
-                tal:define="vocab python:here.portal_catalog.uniqueValuesFor('ero_target_group');"
-                >
-            <option value="#"
-                    tal:repeat="tg vocab"
-                    tal:content="tg"
-                    tal:attributes="value tg;
-                                    selected python:test(tg == value, 'selected', '');"
-                    i18n:translate=""
-                    >dummy</option>
-        </select>
-        <br />
-    </div>
-    </div>
-    <!-- end of ERO_Target_Group -->
 
     <!-- Created -->
     <div metal:define-macro="Created">
