@@ -56,7 +56,8 @@
     <div metal:define-macro="Categories"
         i18n:domain="osha">
       <div class="field"
-        tal:define="value value|python:[]">
+        tal:define="value value|python:[];
+                    oshaview here/@@oshaview">
         <label for="Subject" i18n:translate="label_categories">Categories</label>
 
         <!--div class="formHelp" i18n:translate="help_search_categories">
@@ -71,14 +72,13 @@
                 size="7"
                 multiple="multiple"
                 tal:define="contentSubjects here/Subject;
-                            usedSubjects python:here.portal_catalog.uniqueValuesFor('Subject');"
+                            usedSubjects oshaview/getTranslatedCategories;"
                 >
             <option value="#"
                     tal:repeat="subject usedSubjects"
-                    tal:content="subject"
-                    tal:attributes="value subject;
-                        selected python:test(subject in value, 'selected', '');"
-                    i18n:translate=""
+                    tal:content="python:subject[1]"
+                    tal:attributes="value python:subject[0];
+                        selected python:test(subject[0] in value, 'selected', '');"
                     >dummy</option>
         </select>
         <br />
