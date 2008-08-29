@@ -77,8 +77,11 @@ class FilterHelper(BrowserView):
         langtool = getToolByName(self, 'portal_languages')
         langs = pc.uniqueValuesFor('getRemoteLanguage')
         nicelangs = list()
+        langinfo = langtool.getAvailableLanguageInformation()
         for lang in langs:
-            nice = langtool.getNameForLanguageCode(lang)
+            li = langinfo.get(lang, None)
+            if not li: continue
+            nice = li.get('native', li.get('name', None))
             if nice:
                 nicelangs.append((lang, nice))
         return nicelangs
