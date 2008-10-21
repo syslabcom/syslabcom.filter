@@ -336,7 +336,7 @@
                         size size|string:5;
                         selected_lang getRemoteLanguage|request/getRemoteLanguage|string:"
             >
-            <label for="getRemoteLanguage" i18n:domain="RALink" i18n:translate="label_remote_language">Remote Language</label>
+            <label class="formQuestion" for="getRemoteLanguage" i18n:domain="RALink" i18n:translate="label_remote_language">Remote Language</label>
             <br>
             <select name="getRemoteLanguage"
                     tabindex=""
@@ -613,7 +613,7 @@
                         multiple multiple|string:
                         "
             class="field">
-            <label for="Country" i18n:domain="RALink" i18n:translate="label_country">Country</label><br>
+            <label class="formQuestion"  for="Country" i18n:domain="RALink" i18n:translate="label_country">Country</label><br>
             <select tal:attributes="name fieldName;
                                     value value|python:[];
                                     id fieldName;
@@ -712,6 +712,7 @@
                         fieldRealName string:remoteProvider;
                         mockup      nocall:here/@@ATMockup;
                         value       python:[];
+                        nodesHaveCBs python:0;
                         use_portal_type portal_type|string:RALink;
                         vocabulary  string:getProviderVocabulary;
                         quicksearch_vocabulary string:getProviderQuicksearch;
