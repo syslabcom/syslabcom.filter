@@ -723,6 +723,7 @@
                         errors      python:{};
                         hide_id     python:True;
                         at_url      here/portal_url/getPortalPath;
+                        dummy       python:here.REQUEST.set('mode', 'search')
                         "
             class="field">
         <div metal:use-macro="here/itembrowser/macros/search"></div>
