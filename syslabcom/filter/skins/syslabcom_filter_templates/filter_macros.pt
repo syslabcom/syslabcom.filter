@@ -107,6 +107,33 @@
     </div>
     <!-- end of Categories -->
 
+    <!-- Subject -->
+    <div metal:define-macro="Subject"
+        i18n:domain="osha">
+      <div class="field"
+        tal:define="value value|python:[];
+                    oshaview here/@@oshaview">
+        <label for="Subject" i18n:translate="label_categories">Categories</label>
+
+		<!-- specialty: db_filter from osha.theme looks for a variable called keywords, not Subject -->
+        <select name="keywords:list"
+                id="Subject"
+                size="7"
+                multiple="multiple"
+                tal:define="usedSubjects oshaview/getTranslatedCategories;"
+                >
+            <option value="#"
+                    tal:repeat="subject usedSubjects"
+                    tal:content="python:subject[1]"
+                    tal:attributes="value python:subject[0];
+                        selected python:test(subject[0] in value, 'selected', '');"
+                    >dummy</option>
+        </select>
+
+      </div>
+    </div>
+    <!-- end of Subject -->
+
 
     <!-- Created -->
     <div metal:define-macro="Created">
