@@ -115,6 +115,7 @@
                     size size|python:7;
                     oshaview here/@@oshaview">
         <label for="Subject" i18n:translate="label_categories">Categories</label>
+        <br />
 
 		<!-- specialty: db_filter from osha.theme looks for a variable called keywords, not Subject -->
         <select name="keywords:list"
