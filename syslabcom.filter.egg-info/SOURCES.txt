@@ -15,6 +15,7 @@ syslabcom.filter.egg-info/not-zip-safe
 syslabcom.filter.egg-info/paster_plugins.txt
 syslabcom.filter.egg-info/requires.txt
 syslabcom.filter.egg-info/top_level.txt
+syslabcom/filter/.svnignore
 syslabcom/filter/__init__.py
 syslabcom/filter/configure.zcml
 syslabcom/filter/profiles.zcml

@@ -1,0 +1,12 @@
+syslabcom.filter Changelog
+==========================
+
+syslabcom.filter 1.1 (2009-05-12)
+---------------------------------
+
+- Packaged egg (pilz)
+
+syslabcom.filter 1.0 (2008-03-31)
+---------------------------------
+
+- Initial port

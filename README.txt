@@ -1,7 +1,16 @@
-syslabcom.filter Package Readme
-=========================
+.. contents::
 
-Overview
---------
+.. Note!
+   -----
+   
+   - code repository
+   - bug tracker
+   - questions/comments feedback mail
 
-Tools to build filter forms
+
+- Code repository: https://svn.syslab.com/svn/syslabcom/syslabcom.filter/
+- Questions and comments to info (at) syslab (dot) com
+- Report bugs at http://products.syslab.com/products/syslabcom.filter/issues
+
+
+
