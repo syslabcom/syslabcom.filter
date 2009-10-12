@@ -122,9 +122,14 @@
                 id="Subject"
                 size="7"
                 multiple="multiple"
-				tal:attributes="size size"
+		tal:attributes="size size;
+                                multiple python: size > 1 and 'multiple'"
                 tal:define="usedSubjects oshaview/getTranslatedCategories;"
                 >
+            <option value=""
+                    tal:condition="python: size == 1"
+                    i18n:domain="osha"
+                    i18n:translate="label_select">Select...</option>
             <option value="#"
                     tal:repeat="subject usedSubjects"
                     tal:content="python:subject[1]"
