@@ -1,6 +1,12 @@
 syslabcom.filter Changelog
 ==========================
 
+syslabcom.filter 1.2 (2009-10-12)
+---------------------------------
+
+- Changed the Subject filter macro to display a drop down list if size is set
+  to 1. (deroiste)
+
 syslabcom.filter 1.1 (2009-05-12)
 ---------------------------------
 
