@@ -785,6 +785,81 @@
     </div>
     <!-- end of Riskassesment 'hazards' special -->
 
+
+
+    <!-- EffectiveDate -->
+    <div metal:define-macro="EffectiveDate">
+        <div tal:define="set_day request/effective_day|nothing;
+                         set_month request/effective_month|nothing;
+                         set_year request/effective_year|nothing;
+                         set_day python:(set_year and set_month) and set_day or '';
+                         set_month python:(set_year and set_month) and set_month or '';
+                         set_year python:(set_year and set_month) and set_year or '';
+                         mode request/effective_mode|string:before;
+                         effective_days_range request/effective_days_range|nothing;
+                         i18nl10n python:modules['Products.CMFPlone'].i18nl10n;
+                         monthname_english nocall:i18nl10n/monthname_english;
+                         DateTime python:modules['DateTime'].DateTime;
+                         year_range python:range(DateTime().year()-8, DateTime().year()+1);
+                         month_range python:[dict(val=i, name=monthname_english(i).lower()) for i in range(1,13)]">
+
+            <label i18n:translate="label_effective_date" i18n:domain="plone">Publication date</label><br />
+
+            <div class="formHelp" i18n:translate="help_effective_date_range">
+                You can narrow down the search results by selecting a publication date. You can choose to see only results 
+                published before that date, after that date or within a selected number of days.
+            </div>
+
+            <select name="effective_year:int"> 
+              <option value="0">--</option>
+              <span tal:repeat="year year_range">
+                <option value="year" tal:attributes="value year; 
+                               selected python:year==set_year and 'selected' or ''" tal:content="year">year</option>
+              </span>
+            </select>
+
+            <select name="effective_month:int">
+              <option value="0">--</option>
+              <span tal:repeat="month month_range">
+                <option value="month" tal:attributes="value month/val;
+                               selected python:month['val']==set_month and 'selected' or ''" tal:content="month/name"
+                               i18n:translate="" i18n:domain="osha">month</option>
+              </span>
+            </select>
+
+            <select name="effective_day:int">
+              <option value="0">--</option>
+              <span tal:repeat="day python:range(1,32)">
+                <option value="day" tal:attributes="value day;
+                               selected python:day==set_day and 'selected' or ''" tal:content="day">day</option>
+              </span>
+            </select>
+
+            <div>
+                <input type="radio" name="effective_mode" value="before" 
+                    tal:attributes="checked python:mode=='before' and 'checked' or ''" />
+                <label i18n:translate="published_before">Published before</label><br />
+        
+                <input type="radio" name="effective_mode" value="after" 
+                    tal:attributes="checked python:mode=='after' and 'checked' or ''" />
+                <label i18n:translate="published_after">Published after</label><br />
+        
+                <input type="radio" name="effective_mode" value="range" id="effective_mode_range" 
+                    tal:attributes="checked python:mode=='range' and 'checked' or ''"/>
+                <label i18n:translate="published_within">Published within
+                    <select name="effective_days_range:int" onchange="jq('#effective_mode_range').attr('checked', 'checked');">
+                        <option tal:repeat="num python:(1,5,10,15,20,25,30,50)" value="1" 
+                            tal:attributes="value num; selected python:num==effective_days_range and 'selected' or None"
+                            tal:content="num">1</option>
+                    </select>
+                     days</label>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- end of EffectiveDate -->
+
   </body>
 
 </html>
