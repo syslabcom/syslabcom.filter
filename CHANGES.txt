@@ -1,6 +1,11 @@
 syslabcom.filter Changelog
 ==========================
 
+1.2.1 (2009-10-18)
+------------------
+
+- added macro for EffectiveDate; use-case: BeSWIC publication search (thomasw)
+
 syslabcom.filter 1.2 (2009-10-12)
 ---------------------------------
 
