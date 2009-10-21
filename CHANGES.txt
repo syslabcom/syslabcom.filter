@@ -1,6 +1,12 @@
 syslabcom.filter Changelog
 ==========================
 
+1.2.2 (2009-10-21)
+------------------
+
+- fixed some i18n issues for EffectiveDate (thomasw)
+
+
 1.2.1 (2009-10-18)
 ------------------
 
