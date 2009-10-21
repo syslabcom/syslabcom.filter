@@ -805,7 +805,7 @@
 
             <label i18n:translate="label_effective_date" i18n:domain="plone">Publication date</label><br />
 
-            <div class="formHelp" i18n:translate="help_effective_date_range">
+            <div class="formHelp" i18n:translate="help_effective_date_range" i18n:domain="osha">
                 You can narrow down the search results by selecting a publication date. You can choose to see only results 
                 published before that date, after that date or within a selected number of days.
             </div>
@@ -835,19 +835,20 @@
               </span>
             </select>
 
-            <div>
+            <div i18n:domain="osha">
                 <input type="radio" name="effective_mode" value="before" 
                     tal:attributes="checked python:mode=='before' and 'checked' or ''" />
-                <label i18n:translate="published_before">Published before</label><br />
+                <label i18n:translate="label_published_before">Published before</label><br />
         
                 <input type="radio" name="effective_mode" value="after" 
                     tal:attributes="checked python:mode=='after' and 'checked' or ''" />
-                <label i18n:translate="published_after">Published after</label><br />
+                <label i18n:translate="label_published_after">Published after</label><br />
         
                 <input type="radio" name="effective_mode" value="range" id="effective_mode_range" 
                     tal:attributes="checked python:mode=='range' and 'checked' or ''"/>
-                <label i18n:translate="published_within">Published within
-                    <select name="effective_days_range:int" onchange="jq('#effective_mode_range').attr('checked', 'checked');">
+                <label i18n:translate="label_published_within_x_days">Published within
+                    <select name="effective_days_range:int" i18n:name="numdays"
+                       onchange="jq('#effective_mode_range').attr('checked', 'checked');">
                         <option tal:repeat="num python:(1,5,10,15,20,25,30,50)" value="1" 
                             tal:attributes="value num; selected python:num==effective_days_range and 'selected' or None"
                             tal:content="num">1</option>
