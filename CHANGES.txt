@@ -1,6 +1,12 @@
 syslabcom.filter Changelog
 ==========================
 
+1.2.4 (unreleased)
+------------------
+
+- Nothing changed yet.
+
+
 1.2.3 (2009-11-24)
 ------------------
 
