@@ -800,7 +800,7 @@
                          i18nl10n python:modules['Products.CMFPlone'].i18nl10n;
                          monthname_english nocall:i18nl10n/monthname_english;
                          DateTime python:modules['DateTime'].DateTime;
-                         year_range python:range(DateTime().year()-8, DateTime().year()+1);
+                         year_range python:range(1995, DateTime().year()+1);
                          month_range python:[dict(val=i, name=monthname_english(i).lower()) for i in range(1,13)]">
 
             <label i18n:translate="label_effective_date" i18n:domain="plone">Publication date</label><br />
