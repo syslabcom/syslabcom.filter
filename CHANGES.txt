@@ -1,6 +1,11 @@
 syslabcom.filter Changelog
 ==========================
 
+1.2.3 (2009-11-24)
+------------------
+
+- by special request from Ignace, start the EffectiveDate year in 1995 (thomasw)
+
 1.2.2 (2009-10-21)
 ------------------
 
