@@ -369,7 +369,7 @@
                         search_langs filter_helper/getRemotelanguages;
                         multiple multiple|string:;
                         size size|string:5;
-                        selected_lang getRemoteLanguage|request/getRemoteLanguage|string:"
+                        selected_lang getRemoteLanguage|request/getRemoteLanguage|python:[]"
             >
         <label class="formQuestion" for="getRemoteLanguage" i18n:domain="RALink" i18n:translate="label_remote_language">Remote Language</label>
         <br>
@@ -383,7 +383,7 @@
           <option value="" i18n:domain="RALink" i18n:translate="label_any_language">Any language</option>
           <tal:langs tal:repeat="lang search_langs">
             <option value="#" tal:attributes="value python:lang[0];
-                                              selected python:test(lang[0] == selected_lang, 1, 0)"
+                                              selected python:test(lang[0] in selected_lang, 1, 0)"
                     tal:content="python:lang[1]"> 
               language 
             </option>
