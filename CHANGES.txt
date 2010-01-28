@@ -1,10 +1,10 @@
 syslabcom.filter Changelog
 ==========================
 
-1.2.6 (unreleased)
+1.2.6 (2010-01-28)
 ------------------
 
-- Nothing changed yet.
+- RemoteLanguage_compact can now _really_ handle multiple selections (thomasw)
 
 
 1.2.5 (2010-01-27)
