@@ -208,16 +208,19 @@
       <br />
       <tal:creators tal:define="filter_helper   here/@@filter_helper;
                                 creators filter_helper/getCreators;
+								multiple multiple|string:;
+								size size|string:1
                                 Creator Creator|string:">
-        <select name="Creator"
-                id="Creator">
+        <select name="Creator" id="Creator"
+                tal:attributes="multiple multiple;
+					size size">
           <!-- tal:condition="python: len(creators) &lt;= 30"-->
           <option value="" i18n:translate="label_any_author">Any Author</option>
           <metal:block tal:repeat="creator creators">
             <option tal:condition="creator"
                     value="" 
                     tal:attributes="value python:creator[0];
-                                    selected python:test(Creator==creator[0], 'selected', '')" 
+                                    selected python:test(creator[0] in Creator, 'selected', '')" 
                     tal:content="python:creator[1]"> username </option>
           </metal:block>
         </select>
