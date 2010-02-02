@@ -705,6 +705,7 @@
                        size    size|python:5;
                        selectionview context/@@at_selection_widget;
                        selection python:selectionview.getSelected(vocab, value);
+                       used_countries python:portal.portal_catalog.uniqueValuesFor('country');
                        vlen python: len(vocab)">
         <label for="country" i18n:domain="RALink" i18n:translate="label_country">Country</label><br />
         <select multiple size="10"
@@ -715,11 +716,13 @@
           <optgroup tal:repeat="area python: here.portal_countryutils.listAreas(omit=widget.omitCountries)"
                     tal:attributes="label area/name"
                     i18n:attributes="label">
-            <option tal:repeat="country area/countries"
+            <span tal:repeat="country area/countries">
+              <option tal:condition="python: country.isocc in used_countries"
                     tal:attributes="value country/isocc;
                                     selected python:test(country.isocc in value, 'selected', None);"
                     tal:content="country/name"
                     i18n:translate="">Germany</option>
+            </span>
           </optgroup>
         </select>
       </div>
