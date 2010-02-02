@@ -881,6 +881,81 @@
     </div>
     <!-- end of EffectiveDate -->
 
+
+    <!-- ModifiedDate -->
+    <div metal:define-macro="ModifiedDate">
+      <div tal:define="set_day request/modified_day|nothing;
+                       set_month request/modified_month|nothing;
+                       set_year request/modified_year|nothing;
+                       set_day python:(set_year and set_month) and (set_day!=0 and set_day or 1) or '';
+                       set_month python:(set_year and set_month) and set_month or '';
+                       set_year python:(set_year and set_month) and set_year or '';
+                       mode request/modified_mode|string:before;
+                       modified_days_range request/modified_days_range|nothing;
+                       i18nl10n python:modules['Products.CMFPlone'].i18nl10n;
+                       monthname_english nocall:i18nl10n/monthname_english;
+                       DateTime python:modules['DateTime'].DateTime;
+                       year_range python:range(1995, DateTime().year()+1);
+                       month_range python:[dict(val=i, name=monthname_english(i).lower()) for i in range(1,13)]">
+
+        <label i18n:translate="label_modified_date" i18n:domain="plone">Modification date</label><br />
+
+        <div class="formHelp" i18n:translate="help_modified_date_range" i18n:domain="osha">
+          You can narrow down the search results by selecting a modification date. You can choose to see only results
+          modified before that date, after that date or within a selected number of days.
+        </div>
+
+        <select name="modified_year:int">
+          <option value="0">--</option>
+          <span tal:repeat="year year_range">
+            <option value="year" tal:attributes="value year;
+                                                 selected python:year==set_year and 'selected' or ''" tal:content="year">year</option>
+          </span>
+        </select>
+
+        <select name="modified_month:int">
+          <option value="0">--</option>
+          <span tal:repeat="month month_range">
+            <option value="month" tal:attributes="value month/val;
+                                                  selected python:month['val']==set_month and 'selected' or ''" tal:content="month/name"
+                    i18n:translate="" i18n:domain="osha">month</option>
+          </span>
+        </select>
+
+        <select name="modified_day:int">
+          <option value="0">--</option>
+          <span tal:repeat="day python:range(1,32)">
+            <option value="day" tal:attributes="value day;
+                                                selected python:day==set_day and 'selected' or ''" tal:content="day">day</option>
+          </span>
+        </select>
+
+        <div i18n:domain="osha">
+          <input type="radio" name="modified_mode" value="before"
+                 tal:attributes="checked python:mode=='before' and 'checked' or ''" />
+          <label i18n:translate="label_modified_before">Modified before</label><br />
+
+          <input type="radio" name="modified_mode" value="after"
+                 tal:attributes="checked python:mode=='after' and 'checked' or ''" />
+          <label i18n:translate="label_modified_after">Modified after</label><br />
+
+          <input type="radio" name="modified_mode" value="range" id="modified_mode_range"
+                 tal:attributes="checked python:mode=='range' and 'checked' or ''"/>
+          <label i18n:translate="label_modified_within_x_days">Modified within
+            <select name="modified_days_range:int" i18n:name="numdays"
+                    onchange="jq('#modified_mode_range').attr('checked', 'checked');">
+              <option tal:repeat="num python:(1,5,10,15,20,25,50,75,100)" value="1"
+                      tal:attributes="value num; selected python:num==modified_days_range and 'selected' or None"
+                      tal:content="num">1</option>
+            </select>
+            days</label>
+        </div>
+
+      </div>
+
+    </div>
+    <!-- end of ModifiedDate -->
+
   </body>
 
 </html>
