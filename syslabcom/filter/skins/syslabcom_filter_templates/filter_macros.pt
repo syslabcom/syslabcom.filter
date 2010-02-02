@@ -115,12 +115,12 @@
         <label for="Subject" i18n:translate="label_categories">Categories</label>
         <br />
 
-	<!-- specialty: db_filter from osha.theme looks for a variable called keywords, not Subject -->
+    <!-- specialty: db_filter from osha.theme looks for a variable called keywords, not Subject -->
         <select name="keywords:list"
                 id="Subject"
                 size="7"
                 multiple="multiple"
-		tal:attributes="size size;
+        tal:attributes="size size;
                                 multiple python: size > 1 and 'multiple'"
                 tal:define="usedSubjects oshaview/getTranslatedCategories;"
                 >
@@ -208,19 +208,19 @@
       <br />
       <tal:creators tal:define="filter_helper   here/@@filter_helper;
                                 creators filter_helper/getCreators;
-								multiple multiple|string:;
-								size size|string:1
+                                multiple multiple|string:;
+                                size size|string:1
                                 Creator Creator|string:">
         <select name="Creator" id="Creator"
                 tal:attributes="multiple multiple;
-					size size">
+                    size size">
           <!-- tal:condition="python: len(creators) &lt;= 30"-->
           <option value="" i18n:translate="label_any_author">Any Author</option>
           <metal:block tal:repeat="creator creators">
             <option tal:condition="creator"
-                    value="" 
+                    value=""
                     tal:attributes="value python:creator[0];
-                                    selected python:test(creator[0] in Creator, 'selected', '')" 
+                                    selected python:test(creator[0] in Creator, 'selected', '')"
                     tal:content="python:creator[1]"> username </option>
           </metal:block>
         </select>
@@ -314,7 +314,7 @@
            xtal:condition="search_langs">
         <label for="Language" i18n:translate="label_language">Language</label>
 
-        <div class="formHelp" 
+        <div class="formHelp"
              i18n:translate="help_search_language"
              i18n:domain="osha">
           Return items available in the selected language.
@@ -379,7 +379,7 @@
         <select name="getRemoteLanguage"
                 tabindex=""
                 id="getRemoteLanguage"
-                tal:attributes="multiple multiple; 
+                tal:attributes="multiple multiple;
                                 size size;
                                 tabindex tabindex/next">
 
@@ -387,8 +387,8 @@
           <tal:langs tal:repeat="lang search_langs">
             <option value="#" tal:attributes="value python:lang[0];
                                               selected python:test(lang[0] in selected_lang, 1, 0)"
-                    tal:content="python:lang[1]"> 
-              language 
+                    tal:content="python:lang[1]">
+              language
             </option>
           </tal:langs>
         </select>
@@ -809,14 +809,14 @@
         <label i18n:translate="label_effective_date" i18n:domain="plone">Publication date</label><br />
 
         <div class="formHelp" i18n:translate="help_effective_date_range" i18n:domain="osha">
-          You can narrow down the search results by selecting a publication date. You can choose to see only results 
+          You can narrow down the search results by selecting a publication date. You can choose to see only results
           published before that date, after that date or within a selected number of days.
         </div>
 
-        <select name="effective_year:int"> 
+        <select name="effective_year:int">
           <option value="0">--</option>
           <span tal:repeat="year year_range">
-            <option value="year" tal:attributes="value year; 
+            <option value="year" tal:attributes="value year;
                                                  selected python:year==set_year and 'selected' or ''" tal:content="year">year</option>
           </span>
         </select>
@@ -839,20 +839,20 @@
         </select>
 
         <div i18n:domain="osha">
-          <input type="radio" name="effective_mode" value="before" 
+          <input type="radio" name="effective_mode" value="before"
                  tal:attributes="checked python:mode=='before' and 'checked' or ''" />
           <label i18n:translate="label_published_before">Published before</label><br />
-          
-          <input type="radio" name="effective_mode" value="after" 
+
+          <input type="radio" name="effective_mode" value="after"
                  tal:attributes="checked python:mode=='after' and 'checked' or ''" />
           <label i18n:translate="label_published_after">Published after</label><br />
-          
-          <input type="radio" name="effective_mode" value="range" id="effective_mode_range" 
+
+          <input type="radio" name="effective_mode" value="range" id="effective_mode_range"
                  tal:attributes="checked python:mode=='range' and 'checked' or ''"/>
           <label i18n:translate="label_published_within_x_days">Published within
             <select name="effective_days_range:int" i18n:name="numdays"
                     onchange="jq('#effective_mode_range').attr('checked', 'checked');">
-              <option tal:repeat="num python:(1,5,10,15,20,25,30,50)" value="1" 
+              <option tal:repeat="num python:(1,5,10,15,20,25,30,50)" value="1"
                       tal:attributes="value num; selected python:num==effective_days_range and 'selected' or None"
                       tal:content="num">1</option>
             </select>
