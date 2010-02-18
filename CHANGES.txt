@@ -1,11 +1,11 @@
 syslabcom.filter Changelog
 ==========================
 
-1.2.8 (unreleased)
+1.2.8 (2010-02-18)
 ------------------
 
-- Nothing changed yet.
-
+- Several improvements: Creator is now multi-selectable, remote_url has better
+  explanations, new field ModifiedDate (thomasw)
 
 1.2.7 (2010-01-29)
 ------------------
