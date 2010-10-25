@@ -462,7 +462,7 @@
                        at_url      here/portal_url/getPortalPath;
                        no_help     python:True;
                        "
-           class="field">
+           class="field" tal:on-error="nothing">
         <div metal:use-macro="here/itembrowser/macros/search"></div>
 
       </div>
@@ -483,7 +483,7 @@
                        at_url      here/portal_url/getPortalPath;
                        no_help     python:True;
                        "
-           class="field">
+           class="field" tal:on-error="nothing">
         <div metal:use-macro="here/itembrowser/macros/search"></div>
 
       </div>
@@ -505,7 +505,7 @@
                        at_url      here/portal_url/getPortalPath;
                        no_help     python:True;
                        "
-           class="field">
+           class="field" tal:on-error="nothing">
         <div metal:use-macro="here/itembrowser/macros/search"></div>
 
       </div>
@@ -526,7 +526,7 @@
                        errors      python:{};
                        at_url      here/portal_url/getPortalPath;
                        "
-           class="field">
+           class="field" tal:on-error="nothing">
         <div metal:use-macro="here/itembrowser/macros/search"></div>
 
       </div>
@@ -546,7 +546,7 @@
                        errors      python:{};
                        at_url      here/portal_url/getPortalPath;
                        "
-           class="field">
+           class="field" tal:on-error="nothing">
         <div metal:use-macro="here/itembrowser/macros/search"></div>
 
       </div>
@@ -567,7 +567,7 @@
                        at_url      here/portal_url/getPortalPath;
                        no_help     python:True;
                        "
-           class="field">
+           class="field" tal:on-error="nothing">
 
         <div metal:use-macro="here/itembrowser/macros/search"></div>
 
@@ -584,7 +584,7 @@
                         values          python:filter_helper.getVocabularySubpath(vocabulary, root_node);
                         value          value | string:;
                         "
-            class="field">
+            class="field" tal:on-error="nothing">
         <select tal:attributes="name fieldName;
                                 id fieldName;
                                 tabindex tabindex/next;"
@@ -617,7 +617,7 @@
                        errors      python:{};
                        at_url      here/portal_url/getPortalPath;
                        "
-           class="field">
+           class="field" tal:on-error="nothing">
         <div metal:use-macro="here/country_widgets/country/macros/search"></div>
       </div>
     </div>
@@ -636,7 +636,7 @@
                        size    size|python:5;
                        selectionview context/@@at_selection_widget;
                        selection python:selectionview.getSelected(vocab, value);
-                       vlen python: len(vocab)">
+                       vlen python: len(vocab)" tal:on-error="nothing">
         <label for="country" i18n:domain="RALink" i18n:translate="label_country">Country</label><br />
         <select tal:attributes="name fieldName;
                                 id fieldName;
@@ -664,7 +664,7 @@
                         size size|string:5;
                         multiple multiple|string:
                         "
-            class="field">
+            class="field" tal:on-error="nothing">
         <label class="formQuestion"  for="Country" i18n:domain="RALink" i18n:translate="label_country">Country</label><br>
         <select tal:attributes="name fieldName;
                                 value value|python:[];
@@ -699,7 +699,7 @@
                        errors      python:{};
                        at_url      here/portal_url/getPortalPath;
                        "
-           class="field">
+           class="field" tal:on-error="nothing">
         <div metal:use-macro="here/country_widgets/multicountry/macros/search"></div>
       </div>
     </div>
@@ -720,7 +720,7 @@
                        selectionview context/@@at_selection_widget;
                        selection python:selectionview.getSelected(vocab, value);
                        used_countries python:portal.portal_catalog.uniqueValuesFor('country');
-                       vlen python: len(vocab)">
+                       vlen python: len(vocab)" tal:on-error="nothing">
         <label for="country" i18n:domain="RALink" i18n:translate="label_country">Country</label><br />
         <select multiple size="10"
                 tal:attributes="name fieldName;
@@ -780,7 +780,7 @@
                        at_url      here/portal_url/getPortalPath;
                        dummy       python:here.REQUEST.set('mode', 'search')
                        "
-           class="field">
+           class="field" tal:on-error="nothing">
         <div metal:use-macro="here/itembrowser/macros/search"></div>
       </div>
     </div>
@@ -795,7 +795,7 @@
                        termid termid|string:28521A;
                        fieldname fieldname|string:multilingual_thesaurus;
                        DL python:filter_helper.getVocabularySubpath(vocabname, termid);
-                       ">
+                       " tal:on-error="nothing">
         <label i18n:translate="ra_hazard">Hazard</label><br/>
         <span tal:repeat="term DL/items">
           <input type="checkbox" name="#" tal:attributes="name string:${fieldname}:list;
@@ -821,7 +821,7 @@
                        monthname_english nocall:i18nl10n/monthname_english;
                        DateTime python:modules['DateTime'].DateTime;
                        year_range python:range(1995, DateTime().year()+1);
-                       month_range python:[dict(val=i, name=monthname_english(i).lower()) for i in range(1,13)]">
+                       month_range python:[dict(val=i, name=monthname_english(i).lower()) for i in range(1,13)]" tal:on-error="nothing">
 
         <label i18n:translate="label_effective_date" i18n:domain="plone">Publication date</label><br />
 
@@ -896,7 +896,7 @@
                        monthname_english nocall:i18nl10n/monthname_english;
                        DateTime python:modules['DateTime'].DateTime;
                        year_range python:range(1995, DateTime().year()+1);
-                       month_range python:[dict(val=i, name=monthname_english(i).lower()) for i in range(1,13)]">
+                       month_range python:[dict(val=i, name=monthname_english(i).lower()) for i in range(1,13)]" tal:on-error="nothing">
 
         <label i18n:translate="label_modified_date" i18n:domain="plone">Modification date</label><br />
 
