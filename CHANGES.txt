@@ -1,7 +1,7 @@
 syslabcom.filter Changelog
 ==========================
 
-1.2.10 (unreleased)
+1.2.10 (2011-05-16)
 -------------------
 
 - Bugfix for #1846. Matching subject was computed in too fuzzy a way, leading to
