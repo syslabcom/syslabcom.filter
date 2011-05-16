@@ -4,8 +4,8 @@ syslabcom.filter Changelog
 1.2.10 (unreleased)
 -------------------
 
-- Nothing changed yet.
-
+- Bugfix for #1846. Matching subject was computed in too fuzzy a way, leading to
+  "prevention" matching "accident_prevention" [thomasw]
 
 1.2.9 (2010-10-25)
 ------------------
