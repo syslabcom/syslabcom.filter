@@ -321,9 +321,7 @@
         </div>
 
         <select name="Language"
-                tabindex=""
-                id="Language"
-                tal:attributes="tabindex tabindex/next">
+                id="Language">
 
           <option value="" i18n:translate="label_any_language">Any language</option>
           <tal:langs tal:repeat="lang search_langs">
@@ -349,9 +347,7 @@
         </div>
 
         <select name="getRemoteLanguage"
-                tabindex=""
-                id="getRemoteLanguage"
-                tal:attributes="tabindex tabindex/next">
+                id="getRemoteLanguage">
 
           <option value="" i18n:domain="RALink" i18n:translate="label_any_language">Any language</option>
           <tal:langs tal:repeat="lang search_langs">
@@ -377,11 +373,9 @@
         <label class="formQuestion" for="getRemoteLanguage" i18n:domain="RALink" i18n:translate="label_remote_language">Remote Language</label>
         <br>
         <select name="getRemoteLanguage"
-                tabindex=""
                 id="getRemoteLanguage"
                 tal:attributes="multiple multiple;
-                                size size;
-                                tabindex tabindex/next">
+                                size size;">
 
           <option value="" i18n:domain="RALink" i18n:translate="label_any_language">Any language</option>
           <tal:langs tal:repeat="lang search_langs">
@@ -586,8 +580,7 @@
                         "
             class="field" tal:on-error="nothing">
         <select tal:attributes="name fieldName;
-                                id fieldName;
-                                tabindex tabindex/next;"
+                                id fieldName;"
                 >
           <option value="" i18n:domain="osha"
                   i18n:translate="label_select">Select...</option>
@@ -639,8 +632,7 @@
                        vlen python: len(vocab)" tal:on-error="nothing">
         <label for="country" i18n:domain="RALink" i18n:translate="label_country">Country</label><br />
         <select tal:attributes="name fieldName;
-                                id fieldName;
-                                tabindex tabindex/next;">
+                                id fieldName;">
           <option tal:condition="widget/provideNullValue" value="" tal:content="widget/nullValueTitle" i18n:translate=""/>
           <optgroup tal:repeat="area python: here.portal_countryutils.listAreas(omit=widget.omitCountries)"
                     tal:attributes="label area/name"
@@ -670,8 +662,7 @@
                                 value value|python:[];
                                 id fieldName;
                                 size size;
-                                multiple multiple;
-                                tabindex tabindex/next;"
+                                multiple multiple;"
                 tal:define="values python:here.portal_catalog.uniqueValuesFor('country');
                             isodict here/portal_countryutils/getCountryIsoDict">
           <option value="" i18n:domain="RALink"
@@ -725,7 +716,6 @@
         <select multiple size="10"
                 tal:attributes="name fieldName;
                                 id fieldName;
-                                tabindex tabindex/next;
                                 size size;">
           <optgroup tal:repeat="area python: here.portal_countryutils.listAreas(omit=widget.omitCountries)"
                     tal:attributes="label area/name"
