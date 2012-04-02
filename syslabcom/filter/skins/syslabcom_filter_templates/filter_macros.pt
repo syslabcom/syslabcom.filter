@@ -156,7 +156,9 @@
                   tal:define="yesterday python:(today-1).Date();
                               lastweek python:(today-7).Date();
                               lastmonth python:(today-31).Date();
-                              ever string:1970/02/01;">
+                              ever string:1970/02/01;
+			      isAnon context/@@plone_portal_state/anonymous;
+			">
             <option value="#"
                     tal:condition="not: isAnon"
                     tal:attributes="value python:member is not None and member.getProperty('last_login_time') or today"
@@ -259,9 +261,13 @@
         </span>
 
         <tal:states define="
+                            portal_properties context/portal_properties;
                             navtree_props portal_properties/navtree_properties;
+			    wtool context/portal_workflow;
                             states          python:wtool.listWFStatesByTitle(filter_similar=1);
-                            state_lists     python: here.createMultiColumnList(states, numCols=1, sort_on='self');"
+                            state_lists     python: here.createMultiColumnList(states, numCols=1, sort_on='self');
+
+			    normalizeString nocall:context/@@plone/normalizeString;"
                     repeat="sublist state_lists">
           <tal:items repeat="state sublist">
             <input class="noborder"
