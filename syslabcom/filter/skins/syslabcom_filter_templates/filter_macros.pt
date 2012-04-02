@@ -157,6 +157,7 @@
                               lastweek python:(today-7).Date();
                               lastmonth python:(today-31).Date();
                               ever string:1970/02/01;
+                              member context/@@plone_portal_state/member;
 			      isAnon context/@@plone_portal_state/anonymous;
 			">
             <option value="#"
