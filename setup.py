@@ -64,6 +64,8 @@ setup(name='syslabcom.filter',
       test_suite = 'syslabcom.filter.tests.test_docs.test_suite',
       entry_points="""
       # -*- entry_points -*- 
+      [z3c.autoinclude.plugin]
+      target = plone
       """,
       )      
       
