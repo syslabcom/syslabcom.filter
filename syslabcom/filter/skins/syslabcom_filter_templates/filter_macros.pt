@@ -261,9 +261,7 @@
           <br />
         </span>
 
-        <tal:states define="
-                            portal_properties context/portal_properties;
-                            navtree_props portal_properties/navtree_properties;
+        <tal:states on-error="nothing" define="
 			    wtool context/portal_workflow;
                             states          python:wtool.listWFStatesByTitle(filter_similar=1);
                             state_lists     python: here.createMultiColumnList(states, numCols=1, sort_on='self');
@@ -296,7 +294,7 @@
                           review_state review_state|python:[];
                           filter_helper   here/@@filter_helper;
                           wfname wfname|string:plone_workflow;
-                          navtree_props portal_properties/navtree_properties;
+			  normalizeString nocall:context/@@plone/normalizeString;
                           states          python:filter_helper.listWFStatesByWorkflowname(wfname, True);">
         <select name="review_state:list"
                 multiple="multiple"
