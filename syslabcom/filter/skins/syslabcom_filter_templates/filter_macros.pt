@@ -213,7 +213,7 @@
                                 creators filter_helper/getCreators;
                                 multiple multiple|string:;
                                 size size|string:1
-                                Creator Creator|string:">
+                                Creator Creator|string:''">
         <select name="Creator" id="Creator"
                 tal:attributes="multiple multiple;
                     size size">
