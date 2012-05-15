@@ -212,8 +212,8 @@
       <tal:creators tal:define="filter_helper   here/@@filter_helper;
                                 creators filter_helper/getCreators;
                                 multiple multiple|string:;
-                                size size|string:1
-                                Creator Creator|string:''">
+                                size size|string:1;
+                                Creator python:'' if Creator == '' else Creator">
         <select name="Creator" id="Creator"
                 tal:attributes="multiple multiple;
                     size size">
