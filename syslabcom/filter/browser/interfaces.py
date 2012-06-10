@@ -1,6 +1,4 @@
-from plone.theme.interfaces import IDefaultPloneLayer
-from zope.interface import Interface, Attribute
-from plone.portlets.interfaces import IPortletManager
+from zope.interface import Interface
 
 
 class IFilterHelper(Interface):
@@ -13,7 +11,7 @@ class IFilterHelper(Interface):
         """ returns a Display List with exactly one level of a tree Vocabulary
             given by key
         """
-    def listWFStatesByWorkflowname( wfname, filter_similar=False):
+    def listWFStatesByWorkflowname(wfname, filter_similar=False):
         """Returns the states of the denoted workflow, optionally filtering
            out states with matching title and id"""
 
@@ -22,5 +20,21 @@ class IFilterHelper(Interface):
         membership tool """
 
     def getRemotelanguages():
-        """ Return all target languages from the catalog that are available 
+        """ Return all target languages from the catalog that are available
         in the portal language tool """
+
+
+class IVocabularyHelper(Interface):
+    """ """
+
+    def getDisplayListFor(vocabularyName=''):
+        """ """
+
+    def getCountryList():
+        """ """
+
+    def getNaceList():
+        """ """
+
+    def getSubjectList():
+        """ """
