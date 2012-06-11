@@ -315,8 +315,7 @@
     <div metal:define-macro="Language">
       <div class="field" i18n:domain="osha"
            tal:define="search_langs here/portal_languages/getSupportedLanguages|python:[];
-                       selected_lang Language|request/Language|string:"
-           xtal:condition="search_langs">
+                       selected_lang Language|request/Language|string:" >
         <label for="Language" i18n:translate="label_language">Language</label>
 
         <div class="formHelp"
