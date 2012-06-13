@@ -449,7 +449,7 @@
     <!-- MultilingualThesaurus -->
     <div metal:define-macro="MultilingualThesaurus">
       <div class="dynatree-atwidget dynatree-custom search_deactivatable">
-        <span href="#" id="button_multilingual_thesaurus" class="toggleButton">
+        <span href="#" id="button_multilingual_thesaurus" class="xtoggleButton" style="font-weight:bold;">
              <a i18n:domain="osha" i18n:translate=""
                class="fakeLink">Multilingual Thesaurus Subject</a>
         </span>
@@ -461,21 +461,27 @@
                 title="label_delete_selection" alt="delete" class="delete">&nbsp;{{ title }}</div>
             </div>          
         </div>
-        <div id="widget_multilingual_thesaurus" class="closed_widget">
+        <div id="overlay_MTS" class="overlay closed_widget">
+          <h2>Multilingual Thesaurus Subject</h2>
+          <div class="close"><span>Close</span></div>
           <div class="dynatree_filter">
             <input type="text" class="filter" />
           </div>        
-          <div class="collective-dynatree-tree">You need to activate JavaScript for the search to work.</div>
+          <div class="collective-dynatree-tree" id="tree_MTS">You need to activate JavaScript for the search to work.</div>
           <div class="dynatree_ajax_vocabulary hiddenStructure"
                tal:content="string:${portal_url}/vdex_as_json?vdex=MultilingualThesaurus">Some URL</div>
-          <div class="dynatree_parameters hiddenStructure">selectMode,2/minExpandLevel,1/rootVisible,False/autoCollapse,False/sparse,True/flatlist,True/title,Multiple_all/checkbox,True</div>
+          <div class="dynatree_parameters hiddenStructure">selectMode,2/minExpandLevel,1/rootVisible,False/autoCollapse,False/sparse,True/flatlist,True/title,Multiple_all/checkbox,True/overlay,True</div>
           <input type="hidden" size="120" value="" id="multilingual_thesaurus" name="multilingual_thesaurus2" class="hiddeninput selected"
                  tal:attributes="value request/multilingual_thesaurus2 | nothing" />
           <div class="customhiddeninput"></div>
           <div class="ui_controls">
             <div class="sparse">Sparse</div>
-          </div>        
-        </div>        
+            <div class="treepopup" rel="#tree_MTS" style="display: None">Open</div>
+          </div>
+        </div>
+        <div class="treepopup" rel="#overlay_MTS" i18n:translate="">
+          Open<p></p>
+        </div>
       </div>
     </div>
     <!-- end of MultilingualThesaurus -->
@@ -486,7 +492,7 @@
           tal:attributes="class python:request.get('getCategoryIndependent', '0')=='1'
            and 'dynatree-atwidget dynatree-custom search_deactivatable disabled'
            or 'dynatree-atwidget dynatree-custom search_deactivatable'">
-        <span href="#" id="button_nace" class="toggleButton">
+        <span href="#" id="button_nace" class="xtoggleButton" style="font-weight:bold;">
              <a i18n:domain="RiskAssessmentLink" i18n:translate="ra_nace_label"
                class="fakeLink">Sector (NACE Code)</a>
         </span>
@@ -498,11 +504,14 @@
                 title="label_delete_selection" alt="delete" class="delete">&nbsp;{{ title }}</div>
             </div>
         </div>
-        <div id="widget_nace" class="closed_widget">
+        <!--div id="widget_nace" class="closed_widget"-->
+        <div class="overlay closed_widget" id="overlay_NACE">
+          <h2>Sector (NACE Code)</h2>
+          <div class="close"><span>Close</span></div>
           <div class="dynatree_filter">
             <input type="text" class="filter" />
           </div>
-          <div class="collective-dynatree-tree">You need to activate JavaScript for the search to work.</div>
+          <div class="collective-dynatree-tree" id="tree_NACE">You need to activate JavaScript for the search to work.</div>
           <div class="dynatree_ajax_vocabulary hiddenStructure"
                tal:content="string:${portal_url}/vdex_as_json?vdex=NACE">Some URL</div>
           <div class="dynatree_parameters hiddenStructure">selectMode,2/minExpandLevel,1/rootVisible,False/autoCollapse,False/sparse,True/flatlist,True/title,Multiple_all/checkbox,True/overlay,True</div>
@@ -511,7 +520,11 @@
           <div class="customhiddeninput"></div>
           <div class="ui_controls">
             <div class="sparse">Sparse</div>
+            <div class="treepopup" rel="#tree_NACE" style="display: None">Open</div>
           </div>
+        </div>
+        <div class="treepopup" rel="#overlay_NACE" i18n:translate="">
+          Open<p></p>
         </div>
       </div>
     </div>
