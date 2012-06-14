@@ -415,7 +415,7 @@
         <li><strong><a href="#"
             tal:attributes="href
             string:${here/absolute_url}/${view/getName}?getRemoteUrl=http://www.hse.gov.uk/press/2005/e05018.htm">
-            http://www.hse.gov.uk/press/2005/e05018.htm</a></strong> <em>Finds exactly that URL<em></li>
+            http://www.hse.gov.uk/press/2005/e05018.htm</a></strong> <em>Finds exactly that URL</em></li>
         </ul>
         </div>
 
