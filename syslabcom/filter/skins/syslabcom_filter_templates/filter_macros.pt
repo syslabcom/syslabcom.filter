@@ -765,37 +765,19 @@
 
     <!-- MultiCountry_compact-->
     <div metal:define-macro="MultiCountry_compact">
-      <div tal:define="fieldName   string:country;
-                       mockup      nocall:here/@@ATMockup;
-                       value       value|python:[];
-                       use_portal_type portal_type|string:RALink;
-                       field       python:mockup.getFakeInstanceField(use_portal_type, fieldName);
-                       widget      nocall: field/widget;
-                       vocab python:field.Vocabulary(here);
-                       format string:select;
-                       size    size|python:5;
-                       selectionview context/@@at_selection_widget;
-                       selection python:selectionview.getSelected(vocab, value);
-                       used_countries python:portal.portal_catalog.uniqueValuesFor('country');
-                       vlen python: len(vocab)" tal:on-error="nothing">
-        <label for="country" i18n:domain="RALink" i18n:translate="label_country">Country</label><br />
-        <select multiple size="10"
-                tal:attributes="name fieldName;
-                                id fieldName;
-                                size size;">
-          <optgroup tal:repeat="area python: here.portal_countryutils.listAreas(omit=widget.omitCountries)"
-                    tal:attributes="label area/name"
-                    i18n:attributes="label">
-            <span tal:repeat="country area/countries">
-              <option tal:condition="python: country.isocc in used_countries"
-                    tal:attributes="value country/isocc;
-                                    selected python:test(country.isocc in value, 'selected', None);"
-                    tal:content="country/name"
-                    i18n:translate="">Germany</option>
-            </span>
-          </optgroup>
-        </select>
-      </div>
+            <label for="country" i18n:domain="RALink" i18n:translate="label_country">Country</label><br />
+            <select multiple size="10" name="country" id="country">
+              <optgroup tal:repeat="area python: here.portal_countryutils.listAreas()"
+                        tal:attributes="label area/name"
+                        i18n:attributes="label">
+                <option tal:repeat="country area/countries"
+                        tal:attributes="value country/isocc;
+                                       selected python:test(country.isocc in value, 'selected', None);"
+                        tal:content="country/name"
+                        i18n:translate="">Germany</option>
+              </optgroup>
+            </select>
+
     </div>
     <!-- end of MultiCountry_compact-->
 
