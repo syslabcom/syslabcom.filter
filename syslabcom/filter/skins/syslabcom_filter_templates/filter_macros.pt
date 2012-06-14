@@ -406,15 +406,15 @@
         <ul>
         <li><strong><a href="#" 
             tal:attributes="href
-            string:${here/absolute_url}/${template/getId}?getRemoteUrl=http://www.ttl.fi/*">
+            string:${here/absolute_url}/${view/getName}?getRemoteUrl=http://www.ttl.fi/*">
             http://www.ttl.fi/*</a></strong> <em>Finds all URLs from that site</em></li>
         <li><strong><a href="#" 
             tal:attributes="href
-            string:${here/absolute_url}/${template/getId}?getRemoteUrl=http://www.ttl.fi/internet/partner/*">
+            string:${here/absolute_url}/${view/getName}?getRemoteUrl=http://www.ttl.fi/internet/partner/*">
             http://www.ttl.fi/internet/partner/*</a></strong> <em>Finds all URLs from a sub-section of that site</em></li>
         <li><strong><a href="#"
             tal:attributes="href
-            string:${here/absolute_url}/${template/getId}?getRemoteUrl=http://www.hse.gov.uk/press/2005/e05018.htm">
+            string:${here/absolute_url}/${view/getName}?getRemoteUrl=http://www.hse.gov.uk/press/2005/e05018.htm">
             http://www.hse.gov.uk/press/2005/e05018.htm</a></strong> <em>Finds exactly that URL<em></li>
         </ul>
         </div>
