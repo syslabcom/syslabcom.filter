@@ -505,7 +505,6 @@
                 title="label_delete_selection" alt="delete" class="delete">&nbsp;{{ title }}</div>
             </div>
         </div>
-        <!--div id="widget_nace" class="closed_widget"-->
         <div class="overlay closed_widget" id="overlay_NACE">
           <h2>Sector (NACE Code)</h2>
           <div class="formHelp">Pick one or more values by ticking a checkbox in the tree. You can use the quick search field below to find values by typing the first letters. Click 'Close' when you are finished picking values.</div>
@@ -597,22 +596,41 @@
 
     <!-- Subcategory aka Site Position -->
     <div metal:define-macro="Subcategory">
-      <div tal:define=" fieldName   string:subcategory;
-                       mockup      nocall:here/@@ATMockup;
-                       value       subcategory|string:;
-                       use_portal_type portal_type|string:OSH_Link;
-                       field       python:mockup.getFakeInstanceField(use_portal_type, fieldName);
-                       widget      nocall: field/widget;
-                       mode        string:search;
-                       accessor    python:field.getDefault(here);
-                       errors      python:{};
-                       at_url      here/portal_url/getPortalPath;
-                       no_help     python:True;
-                       "
-           class="field" tal:on-error="nothing">
-
-        <div metal:use-macro="here/itembrowser/macros/search"></div>
-
+      <div class="dynatree-atwidget dynatree-custom">
+        <span href="#" id="button_subcategory" class="toggleButton">
+             <a i18n:domain="osha" i18n:translate="ra_subcategory_label"
+               class="fakeLink">Subcategory</a>
+        </span>
+        <div class="flatlist_container">
+            <div class="flatlist-template">
+                <div class="flatlist-item"
+                key="{{ key }}"><img src="ico_check_red.gif"
+                 i18n:attributes="title" i18n:domain="osha"
+                title="label_delete_selection" alt="delete" class="delete">&nbsp;{{ title }}</div>
+            </div>
+        </div>
+        <div class="overlay closed_widget" id="overlay_subcategory">
+          <h2>Subcategory</h2>
+          <div class="formHelp">Pick one or more values by ticking a checkbox in the tree. You can use the quick search field below to find values by typing the first letters. Click 'Close' when you are finished picking values.</div>
+          <div class="close"><span>Close</span></div>
+          <div class="dynatree_filter">
+            <input type="text" class="filter" />
+          </div>
+          <div class="collective-dynatree-tree" id="tree_subcategory">You need to activate JavaScript for the search to work.</div>
+          <div class="dynatree_ajax_vocabulary hiddenStructure"
+               tal:content="string:${portal_url}/vdex_as_json?vdex=Subcategory">Some URL</div>
+          <div class="dynatree_parameters hiddenStructure">selectMode,2/minExpandLevel,1/rootVisible,False/autoCollapse,False/sparse,True/flatlist,True/title,Multiple_all/checkbox,True/overlay,True/filter,True</div>
+          <input type="hidden" size="120" value="" id="subcategory" name="subcategory2" class="hiddeninput selected"
+                 tal:attributes="value request/subcategory2 | nothing" />
+          <div class="customhiddeninput"></div>
+          <div class="ui_controls">
+            <div class="sparse">Sparse</div>
+            <div class="treepopup" rel="#tree_subcategory" style="display: None">Open</div>
+          </div>
+        </div>
+        <div class="treepopup" rel="#overlay_subcategory" i18n:translate="">
+          Open<p></p>
+        </div>
       </div>
     </div>
     <!-- end of Subcategory-->
