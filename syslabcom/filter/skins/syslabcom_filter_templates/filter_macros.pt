@@ -449,7 +449,7 @@
     <!-- MultilingualThesaurus -->
     <div metal:define-macro="MultilingualThesaurus">
       <div class="dynatree-atwidget dynatree-custom search_deactivatable">
-        <span href="#" id="button_multilingual_thesaurus" class="xtoggleButton" style="font-weight:bold;">
+        <span href="#" id="button_multilingual_thesaurus" class="toggleButton">
              <a i18n:domain="osha" i18n:translate=""
                class="fakeLink">Multilingual Thesaurus Subject</a>
         </span>
@@ -492,7 +492,7 @@
           tal:attributes="class python:request.get('getCategoryIndependent', '0')=='1'
            and 'dynatree-atwidget dynatree-custom search_deactivatable disabled'
            or 'dynatree-atwidget dynatree-custom search_deactivatable'">
-        <span href="#" id="button_nace" class="xtoggleButton" style="font-weight:bold;">
+        <span href="#" id="button_nace" class="toggleButton">
              <a i18n:domain="RiskAssessmentLink" i18n:translate="ra_nace_label"
                class="fakeLink">Sector (NACE Code)</a>
         </span>
