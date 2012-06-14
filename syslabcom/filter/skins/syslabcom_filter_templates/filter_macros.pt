@@ -463,6 +463,7 @@
         </div>
         <div id="overlay_MTS" class="overlay closed_widget">
           <h2>Multilingual Thesaurus Subject</h2>
+          <div class="formHelp">Pick one or more values by ticking a checkbox in the tree. You can use the quick search field below to find values by typing the first letters. Click 'Close' when you are finished picking values.</div>
           <div class="close"><span>Close</span></div>
           <div class="dynatree_filter">
             <input type="text" class="filter" />
@@ -470,7 +471,7 @@
           <div class="collective-dynatree-tree" id="tree_MTS">You need to activate JavaScript for the search to work.</div>
           <div class="dynatree_ajax_vocabulary hiddenStructure"
                tal:content="string:${portal_url}/vdex_as_json?vdex=MultilingualThesaurus">Some URL</div>
-          <div class="dynatree_parameters hiddenStructure">selectMode,2/minExpandLevel,1/rootVisible,False/autoCollapse,False/sparse,True/flatlist,True/title,Multiple_all/checkbox,True/overlay,True</div>
+          <div class="dynatree_parameters hiddenStructure">selectMode,2/minExpandLevel,1/rootVisible,False/autoCollapse,False/sparse,True/flatlist,True/title,Multiple_all/checkbox,True/overlay,True/filter,True</div>
           <input type="hidden" size="120" value="" id="multilingual_thesaurus" name="multilingual_thesaurus2" class="hiddeninput selected"
                  tal:attributes="value request/multilingual_thesaurus2 | nothing" />
           <div class="customhiddeninput"></div>
@@ -507,6 +508,7 @@
         <!--div id="widget_nace" class="closed_widget"-->
         <div class="overlay closed_widget" id="overlay_NACE">
           <h2>Sector (NACE Code)</h2>
+          <div class="formHelp">Pick one or more values by ticking a checkbox in the tree. You can use the quick search field below to find values by typing the first letters. Click 'Close' when you are finished picking values.</div>
           <div class="close"><span>Close</span></div>
           <div class="dynatree_filter">
             <input type="text" class="filter" />
@@ -514,7 +516,7 @@
           <div class="collective-dynatree-tree" id="tree_NACE">You need to activate JavaScript for the search to work.</div>
           <div class="dynatree_ajax_vocabulary hiddenStructure"
                tal:content="string:${portal_url}/vdex_as_json?vdex=NACE">Some URL</div>
-          <div class="dynatree_parameters hiddenStructure">selectMode,2/minExpandLevel,1/rootVisible,False/autoCollapse,False/sparse,True/flatlist,True/title,Multiple_all/checkbox,True/overlay,True</div>
+          <div class="dynatree_parameters hiddenStructure">selectMode,2/minExpandLevel,1/rootVisible,False/autoCollapse,False/sparse,True/flatlist,True/title,Multiple_all/checkbox,True/overlay,True/filter,True</div>
           <input type="hidden" size="120" value="" id="nace" name="nace2" class="hiddeninput selected"
                  tal:attributes="value request/nace2 | nothing" />
           <div class="customhiddeninput"></div>
