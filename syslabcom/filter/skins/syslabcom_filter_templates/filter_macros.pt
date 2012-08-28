@@ -214,7 +214,7 @@
                                 multiple multiple|string:;
                                 size size|string:1;
                                 Creator python:'' if Creator == '' else Creator">
-        <select name="Creator" id="Creator"
+        <select name="Creator:list" id="Creator"
                 tal:attributes="multiple multiple;
                     size size">
           <!-- tal:condition="python: len(creators) &lt;= 30"-->
