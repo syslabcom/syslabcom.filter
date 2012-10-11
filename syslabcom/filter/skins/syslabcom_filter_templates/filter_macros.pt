@@ -399,7 +399,7 @@
     <div metal:define-macro="RemoteUrl">
       <div class="field" i18n:domain="osha"
            tal:define="size size|python:25">
-        <label for="getRemoteUrl" i18n:translate="label_remote_url">Remote URL</label>
+        <label for="getRemoteUrl" i18n:translate="label_remote_url" i18n:domain="plone">Remote URL</label>
 
         <div class="formHelp" i18n:translate="help_remote_url">
           Enter a URL to find content by. The * character can be used for wildcard searches. Examples:
