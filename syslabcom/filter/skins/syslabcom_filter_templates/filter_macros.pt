@@ -448,7 +448,8 @@
 
     <!-- MultilingualThesaurus -->
     <div metal:define-macro="MultilingualThesaurus">
-      <div class="dynatree-atwidget dynatree-custom search_deactivatable">
+      <div class="dynatree-atwidget dynatree-custom search_deactivatable"
+           tal:define="navigation_root_url context/@@plone_portal_state/navigation_root_url">
         <span href="#" id="button_multilingual_thesaurus" class="toggleButton">
              <a i18n:domain="osha" i18n:translate=""
                class="fakeLink">Multilingual Thesaurus Subject</a>
@@ -470,7 +471,7 @@
           </div>        
           <div class="collective-dynatree-tree" id="tree_MTS">You need to activate JavaScript for the search to work.</div>
           <div class="dynatree_ajax_vocabulary hiddenStructure"
-               tal:content="string:${portal_url}/vdex_as_json?vdex=MultilingualThesaurus">Some URL</div>
+               tal:content="string:${navigation_root_url}/vdex_as_json?vdex=MultilingualThesaurus">Some URL</div>
           <div class="dynatree_parameters hiddenStructure">selectMode,2/minExpandLevel,1/rootVisible,False/autoCollapse,False/sparse,True/flatlist,True/title,Multiple_all/checkbox,True/overlay,True/filter,True</div>
           <input type="hidden" size="120" value="" id="multilingual_thesaurus" name="multilingual_thesaurus2" class="hiddeninput selected"
                  tal:attributes="value request/multilingual_thesaurus2 | nothing" />
@@ -492,7 +493,8 @@
       <div class="dynatree-atwidget dynatree-custom search_deactivatable"
           tal:attributes="class python:request.get('getCategoryIndependent', '0')=='1'
            and 'dynatree-atwidget dynatree-custom search_deactivatable disabled'
-           or 'dynatree-atwidget dynatree-custom search_deactivatable'">
+           or 'dynatree-atwidget dynatree-custom search_deactivatable'"
+          tal:define="navigation_root_url context/@@plone_portal_state/navigation_root_url">
         <span href="#" id="button_nace" class="toggleButton">
              <a i18n:domain="RiskAssessmentLink" i18n:translate="ra_nace_label"
                class="fakeLink">Sector (NACE Code)</a>
@@ -514,7 +516,7 @@
           </div>
           <div class="collective-dynatree-tree" id="tree_NACE">You need to activate JavaScript for the search to work.</div>
           <div class="dynatree_ajax_vocabulary hiddenStructure"
-               tal:content="string:${portal_url}/vdex_as_json?vdex=NACE">Some URL</div>
+               tal:content="string:${navigation_root_url}/vdex_as_json?vdex=NACE">Some URL</div>
           <div class="dynatree_parameters hiddenStructure">selectMode,2/minExpandLevel,1/rootVisible,False/autoCollapse,False/sparse,True/flatlist,True/title,Multiple_all/checkbox,True/overlay,True/filter,True</div>
           <input type="hidden" size="120" value="" id="nace" name="nace2" class="hiddeninput selected"
                  tal:attributes="value request/nace2 | nothing" />
@@ -596,7 +598,8 @@
 
     <!-- Subcategory aka Site Position -->
     <div metal:define-macro="Subcategory">
-      <div class="dynatree-atwidget dynatree-custom">
+      <div class="dynatree-atwidget dynatree-custom"
+           tal:define="navigation_root_url context/@@plone_portal_state/navigation_root_url">
         <span href="#" id="button_subcategory" class="toggleButton">
              <a i18n:domain="osha" i18n:translate="ra_subcategory_label"
                class="fakeLink">Subcategory</a>
@@ -618,7 +621,7 @@
           </div>
           <div class="collective-dynatree-tree" id="tree_subcategory">You need to activate JavaScript for the search to work.</div>
           <div class="dynatree_ajax_vocabulary hiddenStructure"
-               tal:content="string:${portal_url}/vdex_as_json?vdex=Subcategory">Some URL</div>
+               tal:content="string:${navigation_root_url}/vdex_as_json?vdex=Subcategory">Some URL</div>
           <div class="dynatree_parameters hiddenStructure">selectMode,2/minExpandLevel,1/rootVisible,False/autoCollapse,False/sparse,True/flatlist,True/title,Multiple_all/checkbox,True/overlay,True/filter,True</div>
           <input type="hidden" size="120" value="" id="subcategory" name="subcategory2" class="hiddeninput selected"
                  tal:attributes="value request/subcategory2 | nothing" />
