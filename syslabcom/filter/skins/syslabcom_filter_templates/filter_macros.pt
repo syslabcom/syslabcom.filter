@@ -349,7 +349,6 @@
         <div class="formHelp" i18n:translate="help_search_remote_language">
           Return items available in the selected language on the remote site.
         </div>
-
         <select name="getRemoteLanguage"
                 id="getRemoteLanguage">
 
@@ -372,7 +371,8 @@
                         search_langs filter_helper/getRemotelanguages;
                         multiple multiple|string:;
                         size size|string:5;
-                        selected_lang getRemoteLanguage|request/getRemoteLanguage|python:[]"
+                        selected_lang getRemoteLanguage|request/getRemoteLanguage|python:[];
+                        any_lang python:selected_lang == '' or selected_lang == [] or (isinstance(selected_lang, list) and '' in selected_lang)"
             >
         <label class="formQuestion" for="getRemoteLanguage" i18n:domain="RALink" i18n:translate="label_remote_language">Remote Language</label>
         <br>
@@ -381,7 +381,7 @@
                 tal:attributes="multiple multiple;
                                 size size;">
 
-          <option value="" i18n:domain="RALink" i18n:translate="label_any_language">Any language</option>
+          <option value="" i18n:domain="RALink" i18n:translate="label_any_language"                   tal:attributes="selected python:'selected' if any_lang else ''">Any language</option>
           <tal:langs tal:repeat="lang search_langs">
             <option value="#" tal:attributes="value python:lang[0];
                                               selected python:test(lang[0] in selected_lang, 1, 0)"
