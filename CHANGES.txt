@@ -1,7 +1,7 @@
 syslabcom.filter Changelog
 ==========================
 
-1.3.2 (unreleased)
+1.3.2 (2013-06-24)
 ------------------
 
 - #7627 lang fallback filter: fix the RemoteLanguage_compact macro so
