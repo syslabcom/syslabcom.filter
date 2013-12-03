@@ -58,7 +58,7 @@ class FilterHelper(BrowserView):
         names = pc.uniqueValuesFor('Creator')
         nicenames = list()
         for name in names:
-            if name.strip() == '':
+            if name is None or name.strip() == '':
                 continue
             nice = mtool.getMemberInfo(name)
             nicenames.append((name, nice and nice['fullname'] or name))
