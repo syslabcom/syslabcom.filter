@@ -1,0 +1,9 @@
+include *.txt
+recursive-include docs *.EUPL
+recursive-include docs *.GPL
+recursive-include docs *.txt
+recursive-include syslabcom *.pt
+recursive-include syslabcom *.svnignore
+recursive-include syslabcom *.txt
+recursive-include syslabcom *.xml
+recursive-include syslabcom *.zcml
